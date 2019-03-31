@@ -72,6 +72,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conexion.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +118,27 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconCerrar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoexmarLogoMod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconNuevo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconGuardar %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconModificar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconCancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconCancelar2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
