@@ -2,6 +2,7 @@
 
 
 Public Class InterfazAlimento
+    Dim EstadoModificado As Boolean
     ' Cierra el formulario hijo y cambia el titulo del formulario padre 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
         ' InterfazPrincipal.PbxLogo.Visible = True
@@ -21,6 +22,7 @@ Public Class InterfazAlimento
     End Sub
     ' Se cargan las instrucciones que se ejecutaran al iniciar el formulario
     Private Sub InterfazAlimento_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        EstadoModificado = False
         TxtAlimento.ReadOnly = True
         TxtIdAlimento.ReadOnly = True
         PbxLogo.Visible = True
@@ -54,7 +56,34 @@ Public Class InterfazAlimento
             Cn.Close()
         End Try
     End Sub
+    ' 
+    Private Sub ModificarAlimento()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
 
+        Try
+            Cn.Open()
+            Using Cmd As New SqlCommand
+                With Cmd
+                    .CommandText = "Sp_ModificarAlimento"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+                    .Parameters.Add("@IdAlimento", SqlDbType.NVarChar, 30).Value = TxtIdAlimento.Text
+                    .Parameters.Add("@Alimento", SqlDbType.NVarChar, 30).Value = TxtAlimento.Text
+                    .ExecuteNonQuery()
+
+                    MessageBox.Show("Registro modificado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                End With
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error al modificar el alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Cn.Close()
+        End Try
+    End Sub
 
     ' bloquea los botones,excepto BtnGuardar. ejecuta el Sub procedimiento NuevoAlimento(), habilita el TxtAlimento y lo enfoca 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
@@ -88,19 +117,60 @@ Public Class InterfazAlimento
         End If
         Return Estado
     End Function
+
+    Private Function ValidarTextBoxModificar()
+        Dim Estado As Boolean
+
+        If TxtAlimento.Text = Nothing And TxtIdAlimento.Text = Nothing Then
+            EpMensaje.SetError(TxtIdAlimento, "Tiene que ingresar Codigo Alimento")
+            EpMensaje.SetError(TxtAlimento, "Tiene que ingresar Alimento")
+            TxtIdAlimento.Focus()
+            TxtIdAlimento.BackColor = Color.LightBlue
+            Estado = False
+        ElseIf TxtIdAlimento.Text = Nothing Then
+            EpMensaje.SetError(TxtIdAlimento, "Tiene que ingresar el Codigo Alimento")
+            TxtIdAlimento.Focus()
+            TxtIdAlimento.BackColor = Color.LightBlue
+            Estado = False
+        ElseIf TxtAlimento.Text = Nothing Then
+            EpMensaje.SetError(TxtAlimento, "Tiene que ingresar el alimento")
+            TxtAlimento.Focus()
+            TxtAlimento.BackColor = Color.LightBlue
+            Estado = False
+        Else
+            Estado = True
+            EpMensaje.SetError(TxtAlimento, "")
+            EpMensaje.SetError(TxtIdAlimento, "")
+
+        End If
+        Return Estado
+    End Function
     ' habilita el BtnNuevo y el BtnModificar
     ' inserta en la tabla Alimento,gracias al Sub procedimiento GuardarAlimento()
     ' Muestra los datos de la tabla en LsvAlimento gracias al Sub Procedimiento MostrarTodo()
     ' Limpia Los TextBox gracias al Sub Procedimiento Limpiar()
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-        If ValidarTextBox() = True Then
-            HabilitarBotones(True, False, True, False)
-            TxtAlimento.ReadOnly = True
-            GuardarAlimento()
-            MostrarTodo()
-            Limpiar()
 
+        If EstadoModificado = True Then
+            If ValidarTextBoxModificar() = True Then
+                HabilitarBotones(True, False, True, False)
+                TxtAlimento.ReadOnly = True
+                TxtIdAlimento.ReadOnly = True
+                ModificarAlimento()
+                MostrarTodo()
+                Limpiar()
+                EstadoModificado = False
+            End If
+        Else
+            If ValidarTextBox() = True Then
+                HabilitarBotones(True, False, True, False)
+                TxtAlimento.ReadOnly = True
+                GuardarAlimento()
+                MostrarTodo()
+                Limpiar()
+            End If
         End If
+
     End Sub
     ' Pasa todos los datos de la Tabla Alimento a la LsvAlimento
     Private Sub MostrarTodo()
@@ -152,6 +222,13 @@ Public Class InterfazAlimento
             TxtAlimento.BackColor = Color.White
         End If
     End Sub
+
+    Private Sub TxtIdAlimento_TextChanged(sender As Object, e As EventArgs) Handles TxtIdAlimento.TextChanged
+        If TxtIdAlimento.Text <> Nothing Then
+            EpMensaje.SetError(TxtIdAlimento, "")
+            TxtIdAlimento.BackColor = Color.White
+        End If
+    End Sub
     ' obtiene el correlativo de la Tabla Alimento que sera mostrado en TxtIdAlimento
     Private Sub NuevoAlimento()
         If Cn.State = ConnectionState.Open Then
@@ -159,18 +236,18 @@ Public Class InterfazAlimento
         End If
 
         Try
-            Dim ListaGenero As New SqlCommand("Sp_InvestigarCorrelativo", Cn)
-            ListaGenero.CommandType = CommandType.StoredProcedure
-            ListaGenero.Parameters.Add("@NombreTabla", SqlDbType.NVarChar, 30).Value = "Alimento"
-            Dim ListarGeneroR As SqlDataReader
+            Dim ListaAlimento As New SqlCommand("Sp_InvestigarCorrelativo", Cn)
+            ListaAlimento.CommandType = CommandType.StoredProcedure
+            ListaAlimento.Parameters.Add("@NombreTabla", SqlDbType.NVarChar, 30).Value = "Alimento"
+            Dim ListarAlimentoR As SqlDataReader
             Cn.Open()
-            ListarGeneroR = ListaGenero.ExecuteReader()
+            ListarAlimentoR = ListaAlimento.ExecuteReader()
 
-            If ListarGeneroR.Read = True Then
-                If ListarGeneroR("IdAlimento") Is "" Then
+            If ListarAlimentoR.Read = True Then
+                If ListarAlimentoR("IdAlimento") Is "" Then
                     TxtIdAlimento.Text = 1
                 Else
-                    TxtIdAlimento.Text = ListarGeneroR("IdAlimento").ToString + 1
+                    TxtIdAlimento.Text = ListarAlimentoR("IdAlimento").ToString + 1
                 End If
             End If
 
@@ -182,11 +259,27 @@ Public Class InterfazAlimento
     End Sub
 
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
-        If ValidarTextBox() = True Then
-            HabilitarBotones(True, False, True, False)
-            TxtAlimento.ReadOnly = True
-            Limpiar()
-        End If
 
+        HabilitarBotones(True, False, True, False)
+        TxtAlimento.ReadOnly = True
+        TxtIdAlimento.ReadOnly = True
+        TxtIdAlimento.BackColor = Color.WhiteSmoke
+        TxtAlimento.BackColor = Color.WhiteSmoke
+
+        TxtAlimento.Text = ""
+        TxtIdAlimento.Text = ""
+
+
+    End Sub
+
+    Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
+        EstadoModificado = True
+        HabilitarBotones(False, True, False, True)
+        TxtAlimento.ReadOnly = False
+        TxtIdAlimento.ReadOnly = False
+        TxtIdAlimento.Focus()
+        LsvAlimentos.Visible = True
+        PbxLogo.Visible = False
+        ChkVer.Checked = True
     End Sub
 End Class
