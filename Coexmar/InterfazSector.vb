@@ -215,7 +215,7 @@ Public Class InterfazSector
 
     ' resetea el Error Provider (EpMensaje)
     ' y coloca su color de fondo Habitual (Blanco)
-    Private Sub TxtAlimento_TextChanged(sender As Object, e As EventArgs) Handles TxtSector.TextChanged
+    Private Sub TxtSector_TextChanged(sender As Object, e As EventArgs) Handles TxtSector.TextChanged
         If TxtSector.Text <> Nothing Then
             EpMensaje.SetError(TxtSector, "")
             TxtSector.BackColor = Color.White
@@ -243,10 +243,10 @@ Public Class InterfazSector
             ListarSectorR = ListaSector.ExecuteReader()
 
             If ListarSectorR.Read = True Then
-                If ListarSectorR("IdSector") Is "" Then
+                If ListarSectorR("IdTabla") Is "" Then
                     TxtIdSector.Text = 1
                 Else
-                    TxtIdSector.Text = ListarSectorR("IdSector").ToString + 1
+                    TxtIdSector.Text = ListarSectorR("IdTabla").ToString + 1
                 End If
             End If
 
