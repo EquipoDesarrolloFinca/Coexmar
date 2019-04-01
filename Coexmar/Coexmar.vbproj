@@ -98,6 +98,12 @@
     <Compile Include="InterfazProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InterfazSector.Designer.vb">
+      <DependentUpon>InterfazSector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InterfazSector.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfazProveedor.resx">
       <DependentUpon>InterfazProveedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfazSector.resx">
+      <DependentUpon>InterfazSector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
