@@ -244,10 +244,10 @@ Public Class InterfazAlimento
             ListarAlimentoR = ListaAlimento.ExecuteReader()
 
             If ListarAlimentoR.Read = True Then
-                If ListarAlimentoR("IdAlimento") Is "" Then
+                If ListarAlimentoR("IdTabla") Is "" Then
                     TxtIdAlimento.Text = 1
                 Else
-                    TxtIdAlimento.Text = ListarAlimentoR("IdAlimento").ToString + 1
+                    TxtIdAlimento.Text = ListarAlimentoR("IdTabla").ToString + 1
                 End If
             End If
 
