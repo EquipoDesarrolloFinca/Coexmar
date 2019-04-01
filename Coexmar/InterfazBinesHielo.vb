@@ -290,7 +290,7 @@ Public Class InterfazBinesHielo
                 While VerBinesHielo.Read = True
                     With LsvBinesHielo.Items.Add(VerBinesHielo("IdBinesHielo").ToString)
                         .SubItems.Add(VerBinesHielo("Fecha").ToString)
-                        .SubItems.Add(VerBinesHielo("NumIdentidadConductor"))
+                        .SubItems.Add(VerBinesHielo("NumIdentidadConductor").ToString)
                         .SubItems.Add(VerBinesHielo("NumPlaca").ToString)
                         .SubItems.Add(VerBinesHielo("Cantidad").ToString)
                         .SubItems.Add(VerBinesHielo("HoraLlegada").ToString)
@@ -321,8 +321,6 @@ Public Class InterfazBinesHielo
 
     End Sub
 
-    ' resetea el Error Provider (EpMensaje)
-    ' y coloca su color de fondo Habitual (Blanco)
     Private Sub TxtIdConductor_TextChanged(sender As Object, e As EventArgs) Handles TxtIdConductor.TextChanged
         If TxtIdConductor.Text <> Nothing Then
             EpMensaje.SetError(TxtIdConductor, "")
