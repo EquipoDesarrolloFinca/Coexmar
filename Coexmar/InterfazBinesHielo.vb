@@ -301,7 +301,7 @@ Public Class InterfazBinesHielo
 
             Catch ex As Exception
 
-                MessageBox.Show("Error al insertar Bin", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al insertar Bin" + ex.ToString, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Cn.Close()
 
@@ -321,8 +321,6 @@ Public Class InterfazBinesHielo
 
     End Sub
 
-    ' resetea el Error Provider (EpMensaje)
-    ' y coloca su color de fondo Habitual (Blanco)
     Private Sub TxtIdConductor_TextChanged(sender As Object, e As EventArgs) Handles TxtIdConductor.TextChanged
         If TxtIdConductor.Text <> Nothing Then
             EpMensaje.SetError(TxtIdConductor, "")

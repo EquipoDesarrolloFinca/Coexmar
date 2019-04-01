@@ -181,7 +181,7 @@ Partial Class InterfazBinesHielo
         Me.LsvBinesHielo.GridLines = True
         Me.LsvBinesHielo.Location = New System.Drawing.Point(0, 0)
         Me.LsvBinesHielo.Name = "LsvBinesHielo"
-        Me.LsvBinesHielo.Size = New System.Drawing.Size(919, 310)
+        Me.LsvBinesHielo.Size = New System.Drawing.Size(919, 184)
         Me.LsvBinesHielo.TabIndex = 0
         Me.LsvBinesHielo.UseCompatibleStateImageBehavior = False
         Me.LsvBinesHielo.View = System.Windows.Forms.View.Details
@@ -194,7 +194,7 @@ Partial Class InterfazBinesHielo
         'ChNumIdentidadConductor
         '
         Me.ChNumIdentidadConductor.Text = "Identidad Conductor"
-        Me.ChNumIdentidadConductor.Width = 134
+        Me.ChNumIdentidadConductor.Width = 200
         '
         'ChNumPlaca
         '
@@ -265,7 +265,7 @@ Partial Class InterfazBinesHielo
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 326)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1044, 310)
+        Me.Panel3.Size = New System.Drawing.Size(1044, 184)
         Me.Panel3.TabIndex = 13
         '
         'BtnCerrar
@@ -296,7 +296,7 @@ Partial Class InterfazBinesHielo
         '
         Me.Panel1.Controls.Add(Me.BtnCerrar)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 636)
+        Me.Panel1.Location = New System.Drawing.Point(0, 510)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1044, 35)
         Me.Panel1.TabIndex = 12
@@ -468,7 +468,7 @@ Partial Class InterfazBinesHielo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1044, 671)
+        Me.ClientSize = New System.Drawing.Size(1044, 545)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.GroupBox1)
