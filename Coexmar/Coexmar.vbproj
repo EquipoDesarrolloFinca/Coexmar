@@ -86,6 +86,12 @@
     <Compile Include="InterfazBinesHielo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InterfazCargo.Designer.vb">
+      <DependentUpon>InterfazCargo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InterfazCargo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InterfazPersonal.Designer.vb">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
     </Compile>
@@ -126,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InterfazBinesHielo.resx">
       <DependentUpon>InterfazBinesHielo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfazCargo.resx">
+      <DependentUpon>InterfazCargo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfazPersonal.resx">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
