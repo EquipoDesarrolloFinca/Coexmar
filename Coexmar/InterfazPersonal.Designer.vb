@@ -51,12 +51,12 @@ Partial Class InterfazPersonal
         Me.LsvPersonal = New System.Windows.Forms.ListView()
         Me.ChNumIdentidad = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChNombre = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.EpMensaje = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ChApellidos = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChTelefono = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChEmail = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChCargo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChSexo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.EpMensaje = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.PIzquierdo.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -406,10 +406,6 @@ Partial Class InterfazPersonal
         Me.ChNombre.Text = "Nombre"
         Me.ChNombre.Width = 100
         '
-        'EpMensaje
-        '
-        Me.EpMensaje.ContainerControl = Me
-        '
         'ChApellidos
         '
         Me.ChApellidos.Text = "Apellidos"
@@ -434,6 +430,10 @@ Partial Class InterfazPersonal
         '
         Me.ChSexo.Text = "Sexo"
         Me.ChSexo.Width = 100
+        '
+        'EpMensaje
+        '
+        Me.EpMensaje.ContainerControl = Me
         '
         'InterfazPersonal
         '

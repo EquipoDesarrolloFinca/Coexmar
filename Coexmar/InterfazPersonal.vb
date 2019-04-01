@@ -13,7 +13,7 @@ Public Class InterfazPersonal
         If ChkVer.CheckState = CheckState.Checked Then
             LsvPersonal.Visible = True
             PbxLogo.Visible = False
-            MostrarTodo()
+            ' MostrarTodo()
         Else
             PbxLogo.Visible = True
             LsvPersonal.Visible = False
@@ -56,4 +56,5 @@ Public Class InterfazPersonal
             Cn.Close()
         End Try
     End Sub
+
 End Class

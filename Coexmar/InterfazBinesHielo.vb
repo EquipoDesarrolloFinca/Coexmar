@@ -290,7 +290,7 @@ Public Class InterfazBinesHielo
                 While VerBinesHielo.Read = True
                     With LsvBinesHielo.Items.Add(VerBinesHielo("IdBinesHielo").ToString)
                         .SubItems.Add(VerBinesHielo("Fecha").ToString)
-                        .SubItems.Add(VerBinesHielo("NumIdentidadConductor").ToString)
+                        .SubItems.Add(VerBinesHielo("NumIdentidadConductor"))
                         .SubItems.Add(VerBinesHielo("NumPlaca").ToString)
                         .SubItems.Add(VerBinesHielo("Cantidad").ToString)
                         .SubItems.Add(VerBinesHielo("HoraLlegada").ToString)
@@ -301,7 +301,7 @@ Public Class InterfazBinesHielo
 
             Catch ex As Exception
 
-                MessageBox.Show("Error al insertar Bin", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al insertar Bin" + ex.ToString, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Cn.Close()
 
