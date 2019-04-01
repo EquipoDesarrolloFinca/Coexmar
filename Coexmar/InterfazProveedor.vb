@@ -1,7 +1,5 @@
 ﻿Imports System.Data.SqlClient
-
-
-Public Class InterfazAlimento
+Public Class InterfazProveedor
     Dim EstadoModificado As Boolean
     ' Cierra el formulario hijo y cambia el titulo del formulario padre 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
@@ -12,24 +10,24 @@ Public Class InterfazAlimento
     ' oculta muestra la tabla con los datos
     Private Sub ChkVer_CheckedChanged(sender As Object, e As EventArgs) Handles ChkVer.CheckedChanged
         If ChkVer.CheckState = CheckState.Checked Then
-            LsvAlimentos.Visible = True
+            LsvProveedor.Visible = True
             PbxLogo.Visible = False
             MostrarTodo()
         Else
             PbxLogo.Visible = True
-            LsvAlimentos.Visible = False
+            LsvProveedor.Visible = False
         End If
     End Sub
     ' Se cargan las instrucciones que se ejecutaran al iniciar el formulario
-    Private Sub InterfazAlimento_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub InterfazProveedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         EstadoModificado = False
-        TxtAlimento.ReadOnly = True
-        TxtIdAlimento.ReadOnly = True
+        TxtNombreProveedor.ReadOnly = True
+        TxtCodigoProveedor.ReadOnly = True
         PbxLogo.Visible = True
-        LsvAlimentos.Visible = False
+        LsvProveedor.Visible = False
     End Sub
     ' Almacena datos en la tabla Alimento
-    Private Sub GuardarAlimento()
+    Private Sub GuardarProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
@@ -38,11 +36,11 @@ Public Class InterfazAlimento
             Cn.Open()
             Using Cmd As New SqlCommand
                 With Cmd
-                    .CommandText = "Sp_InsertarAlimento"
+                    .CommandText = "Sp_InsertarProveedor"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
 
-                    .Parameters.Add("@Alimento", SqlDbType.NVarChar, 30).Value = TxtAlimento.Text
+                    .Parameters.Add("@NombreProveedor", SqlDbType.NVarChar, 40).Value = TxtNombreProveedor.Text
                     .ExecuteNonQuery()
 
                     MessageBox.Show("Registro almacenado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -51,13 +49,13 @@ Public Class InterfazAlimento
             End Using
 
         Catch ex As Exception
-            MessageBox.Show("Error al insertar el alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al insertar el Proveedor", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
     End Sub
     ' 
-    Private Sub ModificarAlimento()
+    Private Sub ModificarProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
@@ -66,11 +64,11 @@ Public Class InterfazAlimento
             Cn.Open()
             Using Cmd As New SqlCommand
                 With Cmd
-                    .CommandText = "Sp_ModificarAlimento"
+                    .CommandText = "Sp_ModificarProveedor"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
-                    .Parameters.Add("@IdAlimento", SqlDbType.NVarChar, 30).Value = TxtIdAlimento.Text
-                    .Parameters.Add("@Alimento", SqlDbType.NVarChar, 30).Value = TxtAlimento.Text
+                    .Parameters.Add("@IdProveedor", SqlDbType.NVarChar, 30).Value = TxtCodigoProveedor.Text
+                    .Parameters.Add("@NombreProveedor", SqlDbType.NVarChar, 30).Value = TxtNombreProveedor.Text
                     .ExecuteNonQuery()
 
                     MessageBox.Show("Registro modificado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -79,7 +77,7 @@ Public Class InterfazAlimento
             End Using
 
         Catch ex As Exception
-            MessageBox.Show("Error al modificar el alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al modificar el Proveedor", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
@@ -88,10 +86,10 @@ Public Class InterfazAlimento
     ' bloquea los botones,excepto BtnGuardar. ejecuta el Sub procedimiento NuevoAlimento(), habilita el TxtAlimento y lo enfoca 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
 
-        NuevoAlimento()
-        TxtAlimento.ReadOnly = False
+        NuevoProveedor()
+        TxtNombreProveedor.ReadOnly = False
         HabilitarBotones(False, True, False, True)
-        TxtAlimento.Focus()
+        TxtNombreProveedor.Focus()
 
     End Sub
     ' controla el estado de los botones (Habilitado o Inabilitado)
@@ -105,14 +103,14 @@ Public Class InterfazAlimento
     Private Function ValidarTextBox()
         Dim Estado As Boolean
 
-        If TxtAlimento.Text = Nothing Then
-            EpMensaje.SetError(TxtAlimento, "Tiene que ingresar el alimento")
-            TxtAlimento.Focus()
-            TxtAlimento.BackColor = Color.LightBlue
+        If TxtNombreProveedor.Text = Nothing Then
+            EpMensaje.SetError(TxtNombreProveedor, "Tiene que ingresar el Proveedor")
+            TxtNombreProveedor.Focus()
+            TxtNombreProveedor.BackColor = Color.LightBlue
             Estado = False
         Else
             Estado = True
-            EpMensaje.SetError(TxtAlimento, "")
+            EpMensaje.SetError(TxtNombreProveedor, "")
 
         End If
         Return Estado
@@ -121,26 +119,26 @@ Public Class InterfazAlimento
     Private Function ValidarTextBoxModificar()
         Dim Estado As Boolean
 
-        If TxtAlimento.Text = Nothing And TxtIdAlimento.Text = Nothing Then
-            EpMensaje.SetError(TxtIdAlimento, "Tiene que ingresar Codigo Alimento")
-            EpMensaje.SetError(TxtAlimento, "Tiene que ingresar Alimento")
-            TxtIdAlimento.Focus()
-            TxtIdAlimento.BackColor = Color.LightBlue
+        If TxtNombreProveedor.Text = Nothing And TxtCodigoProveedor.Text = Nothing Then
+            EpMensaje.SetError(TxtCodigoProveedor, "Tiene que ingresar Codigo Proveedor")
+            EpMensaje.SetError(TxtNombreProveedor, "Tiene que ingresar Proveedor")
+            TxtCodigoProveedor.Focus()
+            TxtCodigoProveedor.BackColor = Color.LightBlue
             Estado = False
-        ElseIf TxtIdAlimento.Text = Nothing Then
-            EpMensaje.SetError(TxtIdAlimento, "Tiene que ingresar el Codigo Alimento")
-            TxtIdAlimento.Focus()
-            TxtIdAlimento.BackColor = Color.LightBlue
+        ElseIf TxtCodigoProveedor.Text = Nothing Then
+            EpMensaje.SetError(TxtCodigoProveedor, "Tiene que ingresar el Codigo Proveedor")
+            TxtCodigoProveedor.Focus()
+            TxtCodigoProveedor.BackColor = Color.LightBlue
             Estado = False
-        ElseIf TxtAlimento.Text = Nothing Then
-            EpMensaje.SetError(TxtAlimento, "Tiene que ingresar el alimento")
-            TxtAlimento.Focus()
-            TxtAlimento.BackColor = Color.LightBlue
+        ElseIf TxtNombreProveedor.Text = Nothing Then
+            EpMensaje.SetError(TxtNombreProveedor, "Tiene que ingresar el Proveedor")
+            TxtNombreProveedor.Focus()
+            TxtNombreProveedor.BackColor = Color.LightBlue
             Estado = False
         Else
             Estado = True
-            EpMensaje.SetError(TxtAlimento, "")
-            EpMensaje.SetError(TxtIdAlimento, "")
+            EpMensaje.SetError(TxtNombreProveedor, "")
+            EpMensaje.SetError(TxtCodigoProveedor, "")
 
         End If
         Return Estado
@@ -154,9 +152,9 @@ Public Class InterfazAlimento
         If EstadoModificado = True Then
             If ValidarTextBoxModificar() = True Then
                 HabilitarBotones(True, False, True, False)
-                TxtAlimento.ReadOnly = True
-                TxtIdAlimento.ReadOnly = True
-                ModificarAlimento()
+                TxtNombreProveedor.ReadOnly = True
+                TxtCodigoProveedor.ReadOnly = True
+                ModificarProveedor()
                 MostrarTodo()
                 Limpiar()
                 EstadoModificado = False
@@ -164,8 +162,8 @@ Public Class InterfazAlimento
         Else
             If ValidarTextBox() = True Then
                 HabilitarBotones(True, False, True, False)
-                TxtAlimento.ReadOnly = True
-                GuardarAlimento()
+                TxtNombreProveedor.ReadOnly = True
+                GuardarProveedor()
                 MostrarTodo()
                 Limpiar()
             End If
@@ -183,25 +181,25 @@ Public Class InterfazAlimento
 
             Try
                 With CMd
-                    .CommandText = "Sp_MostrarAlimentos"
+                    .CommandText = "Sp_MostrarProveedor"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
 
                 End With
 
-                Dim VerAlimento As SqlDataReader
-                VerAlimento = CMd.ExecuteReader
+                Dim VerProveedor As SqlDataReader
+                VerProveedor = CMd.ExecuteReader
 
-                LsvAlimentos.Items.Clear()
-                While VerAlimento.Read = True
-                    With LsvAlimentos.Items.Add(VerAlimento("IdAlimento").ToString)
-                        .SubItems.Add(VerAlimento("Alimento").ToString)
+                LsvProveedor.Items.Clear()
+                While VerProveedor.Read = True
+                    With LsvProveedor.Items.Add(VerProveedor("Codigo Proveedor").ToString)
+                        .SubItems.Add(VerProveedor("Nombre Proveedor").ToString)
                     End With
                 End While
 
             Catch ex As Exception
 
-                MessageBox.Show("Error al insertar alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al insertar Proveedor", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Cn.Close()
 
@@ -210,49 +208,49 @@ Public Class InterfazAlimento
     End Sub
     ' Pone en blanco los TextBox
     Private Sub Limpiar()
-        TxtIdAlimento.Text = Nothing
-        TxtAlimento.Text = Nothing
+        TxtCodigoProveedor.Text = Nothing
+        TxtNombreProveedor.Text = Nothing
     End Sub
 
     ' resetea el Error Provider (EpMensaje)
     ' y coloca su color de fondo Habitual (Blanco)
-    Private Sub TxtAlimento_TextChanged(sender As Object, e As EventArgs) Handles TxtAlimento.TextChanged
-        If TxtAlimento.Text <> Nothing Then
-            EpMensaje.SetError(TxtAlimento, "")
-            TxtAlimento.BackColor = Color.White
+    Private Sub TxtNombreProveedor_TextChanged(sender As Object, e As EventArgs) Handles TxtNombreProveedor.TextChanged
+        If TxtNombreProveedor.Text <> Nothing Then
+            EpMensaje.SetError(TxtNombreProveedor, "")
+            TxtNombreProveedor.BackColor = Color.White
         End If
     End Sub
 
-    Private Sub TxtIdAlimento_TextChanged(sender As Object, e As EventArgs) Handles TxtIdAlimento.TextChanged
-        If TxtIdAlimento.Text <> Nothing Then
-            EpMensaje.SetError(TxtIdAlimento, "")
-            TxtIdAlimento.BackColor = Color.White
+    Private Sub TTxtCodigoProveedo_TextChanged(sender As Object, e As EventArgs) Handles TxtCodigoProveedor.TextChanged
+        If TxtCodigoProveedor.Text <> Nothing Then
+            EpMensaje.SetError(TxtCodigoProveedor, "")
+            TxtCodigoProveedor.BackColor = Color.White
         End If
     End Sub
     ' obtiene el correlativo de la Tabla Alimento que sera mostrado en TxtIdAlimento
-    Private Sub NuevoAlimento()
+    Private Sub NuevoProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
 
         Try
-            Dim ListaAlimento As New SqlCommand("Sp_InvestigarCorrelativo", Cn)
-            ListaAlimento.CommandType = CommandType.StoredProcedure
-            ListaAlimento.Parameters.Add("@NombreTabla", SqlDbType.NVarChar, 30).Value = "Alimento"
-            Dim ListarAlimentoR As SqlDataReader
+            Dim ListaProveedor As New SqlCommand("Sp_InvestigarCorrelativoProveedor", Cn)
+            ListaProveedor.CommandType = CommandType.StoredProcedure
+            ListaProveedor.Parameters.Add("@Proveedor", SqlDbType.NVarChar, 30).Value = "Alimento"
+            Dim ListarProveedorR As SqlDataReader
             Cn.Open()
-            ListarAlimentoR = ListaAlimento.ExecuteReader()
+            ListarProveedorR = ListaProveedor.ExecuteReader()
 
-            If ListarAlimentoR.Read = True Then
-                If ListarAlimentoR("IdAlimento") Is "" Then
-                    TxtIdAlimento.Text = 1
+            If ListarProveedorR.Read = True Then
+                If ListarProveedorR("Codigo Proveedor") Is "" Then
+                    TxtCodigoProveedor.Text = 1
                 Else
-                    TxtIdAlimento.Text = ListarAlimentoR("IdAlimento").ToString + 1
+                    TxtCodigoProveedor.Text = ListarProveedorR("Codigo Proveedor").ToString + 1
                 End If
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error al consultar los datos" + ex.Message, "CientificaMusic", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al consultar los datos" + ex.Message, "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
@@ -261,13 +259,13 @@ Public Class InterfazAlimento
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
 
         HabilitarBotones(True, False, True, False)
-        TxtAlimento.ReadOnly = True
-        TxtIdAlimento.ReadOnly = True
-        TxtIdAlimento.BackColor = Color.WhiteSmoke
-        TxtAlimento.BackColor = Color.WhiteSmoke
+        TxtNombreProveedor.ReadOnly = True
+        TxtCodigoProveedor.ReadOnly = True
+        TxtCodigoProveedor.BackColor = Color.WhiteSmoke
+        TxtNombreProveedor.BackColor = Color.WhiteSmoke
 
-        TxtAlimento.Text = ""
-        TxtIdAlimento.Text = ""
+        TxtNombreProveedor.Text = ""
+        TxtCodigoProveedor.Text = ""
 
 
     End Sub
@@ -275,15 +273,12 @@ Public Class InterfazAlimento
     Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
         EstadoModificado = True
         HabilitarBotones(False, True, False, True)
-        TxtAlimento.ReadOnly = False
-        TxtIdAlimento.ReadOnly = False
-        TxtIdAlimento.Focus()
-        LsvAlimentos.Visible = True
+        TxtNombreProveedor.ReadOnly = False
+        TxtCodigoProveedor.ReadOnly = False
+        TxtCodigoProveedor.Focus()
+        LsvProveedor.Visible = True
         PbxLogo.Visible = False
         ChkVer.Checked = True
     End Sub
 
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
-
-    End Sub
 End Class

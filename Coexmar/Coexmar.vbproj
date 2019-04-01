@@ -80,6 +80,18 @@
       <DependentUpon>InterfazAlimento.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InterfazPersonal.Designer.vb">
+      <DependentUpon>InterfazPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InterfazPersonal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InterfazProveedor.Designer.vb">
+      <DependentUpon>InterfazProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InterfazProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -99,6 +111,12 @@
   <ItemGroup>
     <EmbeddedResource Include="InterfazAlimento.resx">
       <DependentUpon>InterfazAlimento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfazPersonal.resx">
+      <DependentUpon>InterfazPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfazProveedor.resx">
+      <DependentUpon>InterfazProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
