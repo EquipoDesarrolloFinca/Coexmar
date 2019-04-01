@@ -80,6 +80,12 @@
       <DependentUpon>InterfazAlimento.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="InterfazBinesHielo.Designer.vb">
+      <DependentUpon>InterfazBinesHielo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InterfazBinesHielo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InterfazPersonal.Designer.vb">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
     </Compile>
@@ -111,6 +117,9 @@
   <ItemGroup>
     <EmbeddedResource Include="InterfazAlimento.resx">
       <DependentUpon>InterfazAlimento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InterfazBinesHielo.resx">
+      <DependentUpon>InterfazBinesHielo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InterfazPersonal.resx">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
