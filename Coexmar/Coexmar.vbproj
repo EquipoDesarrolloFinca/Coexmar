@@ -72,42 +72,42 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion.vb" />
-    <Compile Include="InterfazAlimento.vb">
+    <Compile Include="Conexion\Conexion.vb" />
+    <Compile Include="Forms\InterfazAlimento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InterfazAlimento.Designer.vb">
+    <Compile Include="Forms\InterfazAlimento.Designer.vb">
       <DependentUpon>InterfazAlimento.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InterfazBinesHielo.Designer.vb">
+    <Compile Include="Forms\InterfazBinesHielo.Designer.vb">
       <DependentUpon>InterfazBinesHielo.vb</DependentUpon>
     </Compile>
-    <Compile Include="InterfazBinesHielo.vb">
+    <Compile Include="Forms\InterfazBinesHielo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InterfazCargo.Designer.vb">
+    <Compile Include="Forms\InterfazCargo.Designer.vb">
       <DependentUpon>InterfazCargo.vb</DependentUpon>
     </Compile>
-    <Compile Include="InterfazCargo.vb">
+    <Compile Include="Forms\InterfazCargo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InterfazPersonal.Designer.vb">
+    <Compile Include="Forms\InterfazPersonal.Designer.vb">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
     </Compile>
-    <Compile Include="InterfazPersonal.vb">
+    <Compile Include="Forms\InterfazPersonal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InterfazProveedor.Designer.vb">
+    <Compile Include="Forms\InterfazProveedor.Designer.vb">
       <DependentUpon>InterfazProveedor.vb</DependentUpon>
     </Compile>
-    <Compile Include="InterfazProveedor.vb">
+    <Compile Include="Forms\InterfazProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InterfazSector.Designer.vb">
+    <Compile Include="Forms\InterfazSector.Designer.vb">
       <DependentUpon>InterfazSector.vb</DependentUpon>
     </Compile>
-    <Compile Include="InterfazSector.vb">
+    <Compile Include="Forms\InterfazSector.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -127,22 +127,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InterfazAlimento.resx">
+    <EmbeddedResource Include="Forms\InterfazAlimento.resx">
       <DependentUpon>InterfazAlimento.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazBinesHielo.resx">
+    <EmbeddedResource Include="Forms\InterfazBinesHielo.resx">
       <DependentUpon>InterfazBinesHielo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazCargo.resx">
+    <EmbeddedResource Include="Forms\InterfazCargo.resx">
       <DependentUpon>InterfazCargo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazPersonal.resx">
+    <EmbeddedResource Include="Forms\InterfazPersonal.resx">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazProveedor.resx">
+    <EmbeddedResource Include="Forms\InterfazProveedor.resx">
       <DependentUpon>InterfazProveedor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InterfazSector.resx">
+    <EmbeddedResource Include="Forms\InterfazSector.resx">
       <DependentUpon>InterfazSector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

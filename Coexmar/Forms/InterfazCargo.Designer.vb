@@ -294,7 +294,6 @@ Partial Class InterfazCargo
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "InterfazCargo"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "InterfazCargo"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
