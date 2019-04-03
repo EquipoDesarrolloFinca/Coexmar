@@ -86,10 +86,10 @@
     <Compile Include="Forms\FrmBinesHielo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InterfazCargo.Designer.vb">
-      <DependentUpon>InterfazCargo.vb</DependentUpon>
+    <Compile Include="Forms\FrmCargo.Designer.vb">
+      <DependentUpon>FrmCargo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InterfazCargo.vb">
+    <Compile Include="Forms\FrmCargo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\InterfazPersonal.Designer.vb">
@@ -133,8 +133,8 @@
     <EmbeddedResource Include="Forms\FrmBinesHielo.resx">
       <DependentUpon>FrmBinesHielo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazCargo.resx">
-      <DependentUpon>InterfazCargo.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmCargo.resx">
+      <DependentUpon>FrmCargo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterfazPersonal.resx">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>

@@ -181,7 +181,7 @@ Public Class InterfazProveedor
 
             Try
                 With CMd
-                    .CommandText = "Sp_MostrarProveedor"
+                    .CommandText = "Sp_MostrarProveedores"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
 
