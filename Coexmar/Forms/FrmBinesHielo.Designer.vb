@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class InterfazBinesHielo
+Partial Class FrmBinesHielo
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -45,7 +45,6 @@ Partial Class InterfazBinesHielo
         Me.TxtIdBin = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.BtnCerrar = New System.Windows.Forms.Button()
-        Me.TxtIdConductor = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -60,12 +59,17 @@ Partial Class InterfazBinesHielo
         Me.TxtPlaca = New System.Windows.Forms.TextBox()
         Me.DtpFecha = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.CmsOpciones = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         CType(Me.EpMensaje, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PIzquierdo.SuspendLayout()
         CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.CmsOpciones.SuspendLayout()
         Me.SuspendLayout()
         '
         'EpMensaje
@@ -80,7 +84,7 @@ Partial Class InterfazBinesHielo
         Me.PIzquierdo.Controls.Add(Me.BtnNuevo)
         Me.PIzquierdo.Controls.Add(Me.BtnGuardar)
         Me.PIzquierdo.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PIzquierdo.Location = New System.Drawing.Point(0, 278)
+        Me.PIzquierdo.Location = New System.Drawing.Point(0, 240)
         Me.PIzquierdo.Name = "PIzquierdo"
         Me.PIzquierdo.Size = New System.Drawing.Size(1044, 48)
         Me.PIzquierdo.TabIndex = 7
@@ -167,7 +171,7 @@ Partial Class InterfazBinesHielo
         Me.PbxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.PbxLogo.BackgroundImage = Global.Coexmar.My.Resources.Resources.CoexmarLogoMod
         Me.PbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxLogo.Location = New System.Drawing.Point(372, 64)
+        Me.PbxLogo.Location = New System.Drawing.Point(376, 12)
         Me.PbxLogo.Name = "PbxLogo"
         Me.PbxLogo.Size = New System.Drawing.Size(358, 229)
         Me.PbxLogo.TabIndex = 2
@@ -181,7 +185,7 @@ Partial Class InterfazBinesHielo
         Me.LsvBinesHielo.GridLines = True
         Me.LsvBinesHielo.Location = New System.Drawing.Point(0, 0)
         Me.LsvBinesHielo.Name = "LsvBinesHielo"
-        Me.LsvBinesHielo.Size = New System.Drawing.Size(919, 184)
+        Me.LsvBinesHielo.Size = New System.Drawing.Size(953, 222)
         Me.LsvBinesHielo.TabIndex = 0
         Me.LsvBinesHielo.UseCompatibleStateImageBehavior = False
         Me.LsvBinesHielo.View = System.Windows.Forms.View.Details
@@ -263,9 +267,9 @@ Partial Class InterfazBinesHielo
         Me.Panel3.Controls.Add(Me.PbxLogo)
         Me.Panel3.Controls.Add(Me.LsvBinesHielo)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(0, 326)
+        Me.Panel3.Location = New System.Drawing.Point(0, 288)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1044, 184)
+        Me.Panel3.Size = New System.Drawing.Size(1044, 222)
         Me.Panel3.TabIndex = 13
         '
         'BtnCerrar
@@ -281,17 +285,6 @@ Partial Class InterfazBinesHielo
         Me.BtnCerrar.TabIndex = 1
         Me.BtnCerrar.UseVisualStyleBackColor = True
         '
-        'TxtIdConductor
-        '
-        Me.TxtIdConductor.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TxtIdConductor.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtIdConductor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtIdConductor.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtIdConductor.Location = New System.Drawing.Point(341, 131)
-        Me.TxtIdConductor.Name = "TxtIdConductor"
-        Me.TxtIdConductor.Size = New System.Drawing.Size(130, 29)
-        Me.TxtIdConductor.TabIndex = 5
-        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.BtnCerrar)
@@ -303,6 +296,7 @@ Partial Class InterfazBinesHielo
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ComboBox1)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.TxtUsuario)
         Me.GroupBox1.Controls.Add(Me.DtpHora)
@@ -319,14 +313,13 @@ Partial Class InterfazBinesHielo
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.TxtIdBin)
-        Me.GroupBox1.Controls.Add(Me.TxtIdConductor)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(0)
-        Me.GroupBox1.Size = New System.Drawing.Size(1044, 326)
+        Me.GroupBox1.Size = New System.Drawing.Size(1044, 288)
         Me.GroupBox1.TabIndex = 11
         Me.GroupBox1.TabStop = False
         '
@@ -464,6 +457,33 @@ Partial Class InterfazBinesHielo
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "Fecha:"
         '
+        'CmsOpciones
+        '
+        Me.CmsOpciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditarToolStripMenuItem, Me.EliminarToolStripMenuItem})
+        Me.CmsOpciones.Name = "CmsOpciones"
+        Me.CmsOpciones.Size = New System.Drawing.Size(118, 48)
+        '
+        'EditarToolStripMenuItem
+        '
+        Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EditarToolStripMenuItem.Text = "Editar"
+        '
+        'EliminarToolStripMenuItem
+        '
+        Me.EliminarToolStripMenuItem.BackColor = System.Drawing.Color.LightCoral
+        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
+        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EliminarToolStripMenuItem.Text = "Eliminar"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(341, 137)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
+        Me.ComboBox1.TabIndex = 20
+        '
         'InterfazBinesHielo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -483,6 +503,7 @@ Partial Class InterfazBinesHielo
         Me.Panel1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.CmsOpciones.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -505,7 +526,6 @@ Partial Class InterfazBinesHielo
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents TxtIdBin As TextBox
-    Friend WithEvents TxtIdConductor As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtUsuario As TextBox
     Friend WithEvents DtpHora As DateTimePicker
@@ -524,4 +544,8 @@ Partial Class InterfazBinesHielo
     Friend WithEvents ChHoraLlegada As ColumnHeader
     Friend WithEvents ChIdProveedor As ColumnHeader
     Friend WithEvents ChIdUsuario As ColumnHeader
+    Friend WithEvents CmsOpciones As ContextMenuStrip
+    Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EliminarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComboBox1 As ComboBox
 End Class

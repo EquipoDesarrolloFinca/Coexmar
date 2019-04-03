@@ -69,7 +69,7 @@ Public Class FrmAlimento
                     .CommandText = "Sp_ModificarAlimento"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
-                    .Parameters.Add("@IdAlimento", SqlDbType.NVarChar, 30).Value = TxtIdAlimento.Text
+                    .Parameters.Add("@IdAlimento", SqlDbType.Int).Value = CInt(TxtIdAlimento.Text)
                     .Parameters.Add("@Alimento", SqlDbType.NVarChar, 30).Value = TxtAlimento.Text
                     .ExecuteNonQuery()
 
@@ -189,7 +189,7 @@ Public Class FrmAlimento
 
             Catch ex As Exception
 
-                MessageBox.Show("Error al insertar alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al Mostrar alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Cn.Close()
 
@@ -279,7 +279,7 @@ Public Class FrmAlimento
         TxtAlimento.Text = LsvAlimentos.FocusedItem.SubItems(1).Text
     End Sub
 
-    Private Sub EliminarAlimento()
+    Private Sub EliminarAlimentos()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
@@ -288,7 +288,7 @@ Public Class FrmAlimento
             Cn.Open()
             Using Cmd As New SqlCommand
                 With Cmd
-                    .CommandText = "Sp_EliminarAlimnetos"
+                    .CommandText = "Sp_EliminarAlimentos"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
                     Dim Id As Integer
@@ -308,7 +308,7 @@ Public Class FrmAlimento
         End Try
     End Sub
     Private Sub EliminarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EliminarToolStripMenuItem.Click
-        EliminarAlimento()
+        EliminarAlimentos()
         MostrarTodo()
         HabilitarBotones(True, True, True, True)
     End Sub
