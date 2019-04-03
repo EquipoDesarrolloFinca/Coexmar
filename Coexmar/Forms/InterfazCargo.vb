@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Public Class FrmCargo
+Public Class InterfazCargo
     Dim EstadoModificado As Boolean
     ' Cierra el formulario hijo y cambia el titulo del formulario padre 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
@@ -149,14 +149,25 @@ Public Class FrmCargo
     ' Limpia Los TextBox gracias al Sub Procedimiento Limpiar()
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
 
-        If ValidarTextBox() = True Then
-            HabilitarBotones(True, False, True, False)
-            TxtCargo.ReadOnly = True
-            GuardarCargo()
-            MostrarTodo()
-            Limpiar()
+        If EstadoModificado = True Then
+            If ValidarTextBoxModificar() = True Then
+                HabilitarBotones(True, False, True, False)
+                TxtCargo.ReadOnly = True
+                TxtIdCargo.ReadOnly = True
+                ModificarCargo()
+                MostrarTodo()
+                Limpiar()
+                EstadoModificado = False
+            End If
+        Else
+            If ValidarTextBox() = True Then
+                HabilitarBotones(True, False, True, False)
+                TxtCargo.ReadOnly = True
+                GuardarCargo()
+                MostrarTodo()
+                Limpiar()
+            End If
         End If
-
 
     End Sub
     ' Pasa todos los datos de la Tabla Alimento a la LsvAlimento
@@ -188,7 +199,7 @@ Public Class FrmCargo
 
             Catch ex As Exception
 
-                MessageBox.Show("Error al Mostrar Cargo", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al insertar Cargo", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Cn.Close()
 
@@ -239,7 +250,7 @@ Public Class FrmCargo
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error al consultar los datos" + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al consultar los datos" + ex.Message, "CientificaMusic", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
@@ -260,58 +271,14 @@ Public Class FrmCargo
     End Sub
 
     Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
-        If ValidarTextBoxModificar() = True Then
-            HabilitarBotones(True, False, True, False)
-            TxtCargo.ReadOnly = True
-            TxtIdCargo.ReadOnly = False
-            ModificarCargo()
-            MostrarTodo()
-            Limpiar()
-
-        End If
-    End Sub
-
-
-
-    Private Sub EditarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditarToolStripMenuItem.Click
-        HabilitarBotones(False, False, True, True)
+        EstadoModificado = True
+        HabilitarBotones(False, True, False, True)
         TxtCargo.ReadOnly = False
-        TxtIdCargo.Text = LsvCargo.FocusedItem.SubItems(0).Text
-        TxtCargo.Text = LsvCargo.FocusedItem.SubItems(1).Text
-    End Sub
-
-    Private Sub EliminarCargo()
-        If Cn.State = ConnectionState.Open Then
-            Cn.Close()
-        End If
-
-        Try
-            Cn.Open()
-            Using Cmd As New SqlCommand
-                With Cmd
-                    .CommandText = "Sp_EliminarCargo"
-                    .CommandType = CommandType.StoredProcedure
-                    .Connection = Cn
-                    Dim Id As Integer
-                    Id = CInt(LsvCargo.FocusedItem.SubItems(0).Text)
-                    .Parameters.Add("@IdCargo", SqlDbType.Int).Value = Id
-                    .ExecuteNonQuery()
-
-                    MessageBox.Show("Registro eliminado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                End With
-            End Using
-
-        Catch ex As Exception
-            MessageBox.Show("Error al eliminar el Cargo", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            Cn.Close()
-        End Try
-    End Sub
-    Private Sub EliminarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EliminarToolStripMenuItem.Click
-        EliminarCargo()
-        MostrarTodo()
-        HabilitarBotones(True, True, True, True)
+        TxtIdCargo.ReadOnly = False
+        TxtIdCargo.Focus()
+        LsvCargo.Visible = True
+        PbxLogo.Visible = False
+        ChkVer.Checked = True
     End Sub
 
 End Class
