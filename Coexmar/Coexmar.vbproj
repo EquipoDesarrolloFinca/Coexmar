@@ -86,6 +86,12 @@
     <Compile Include="Forms\FrmBinesHielo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmConductor.Designer.vb">
+      <DependentUpon>FrmConductor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmConductor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\InterfazCargo.Designer.vb">
       <DependentUpon>InterfazCargo.vb</DependentUpon>
     </Compile>
@@ -108,6 +114,12 @@
       <DependentUpon>InterfazSector.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\InterfazSector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCamion.Designer.vb">
+      <DependentUpon>FrmCamion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCamion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -133,6 +145,9 @@
     <EmbeddedResource Include="Forms\FrmBinesHielo.resx">
       <DependentUpon>FrmBinesHielo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmConductor.resx">
+      <DependentUpon>FrmConductor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterfazCargo.resx">
       <DependentUpon>InterfazCargo.vb</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterfazSector.resx">
       <DependentUpon>InterfazSector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCamion.resx">
+      <DependentUpon>FrmCamion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
