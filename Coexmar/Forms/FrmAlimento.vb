@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 
-Public Class InterfazAlimento
+Public Class FrmAlimento
     Dim EstadoModificado As Boolean
     ' Cierra el formulario hijo y cambia el titulo del formulario padre 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
@@ -151,24 +151,12 @@ Public Class InterfazAlimento
     ' Limpia Los TextBox gracias al Sub Procedimiento Limpiar()
     Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
 
-        If EstadoModificado = True Then
-            If ValidarTextBoxModificar() = True Then
-                HabilitarBotones(True, False, True, False)
-                TxtAlimento.ReadOnly = True
-                TxtIdAlimento.ReadOnly = True
-                ModificarAlimento()
-                MostrarTodo()
-                Limpiar()
-                EstadoModificado = False
-            End If
-        Else
-            If ValidarTextBox() = True Then
-                HabilitarBotones(True, False, True, False)
-                TxtAlimento.ReadOnly = True
-                GuardarAlimento()
-                MostrarTodo()
-                Limpiar()
-            End If
+        If ValidarTextBox() = True Then
+            HabilitarBotones(True, False, True, False)
+            TxtAlimento.ReadOnly = True
+            GuardarAlimento()
+            MostrarTodo()
+            Limpiar()
         End If
 
     End Sub
@@ -273,17 +261,55 @@ Public Class InterfazAlimento
     End Sub
 
     Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
-        EstadoModificado = True
-        HabilitarBotones(False, True, False, True)
-        TxtAlimento.ReadOnly = False
-        TxtIdAlimento.ReadOnly = False
-        TxtIdAlimento.Focus()
-        LsvAlimentos.Visible = True
-        PbxLogo.Visible = False
-        ChkVer.Checked = True
+        If ValidarTextBoxModificar() = True Then
+            HabilitarBotones(True, False, True, False)
+            TxtAlimento.ReadOnly = True
+            TxtIdAlimento.ReadOnly = True
+            ModificarAlimento()
+            MostrarTodo()
+            Limpiar()
+        End If
+
     End Sub
 
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+    Private Sub EditarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditarToolStripMenuItem.Click
+        HabilitarBotones(False, False, True, True)
+        TxtAlimento.ReadOnly = False
+        TxtIdAlimento.Text = LsvAlimentos.FocusedItem.SubItems(0).Text
+        TxtAlimento.Text = LsvAlimentos.FocusedItem.SubItems(1).Text
+    End Sub
 
+    Private Sub EliminarAlimento()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+
+        Try
+            Cn.Open()
+            Using Cmd As New SqlCommand
+                With Cmd
+                    .CommandText = "Sp_EliminarAlimnetos"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+                    Dim Id As Integer
+                    Id = CInt(LsvAlimentos.FocusedItem.SubItems(0).Text)
+                    .Parameters.Add("@IdAlimento", SqlDbType.Int).Value = Id
+                    .ExecuteNonQuery()
+
+                    MessageBox.Show("Registro eliminado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                End With
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error al eliminar el alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Cn.Close()
+        End Try
+    End Sub
+    Private Sub EliminarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EliminarToolStripMenuItem.Click
+        EliminarAlimento()
+        MostrarTodo()
+        HabilitarBotones(True, True, True, True)
     End Sub
 End Class

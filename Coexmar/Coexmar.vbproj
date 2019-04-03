@@ -73,11 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\Conexion.vb" />
-    <Compile Include="Forms\InterfazAlimento.vb">
+    <Compile Include="Forms\FrmAlimento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InterfazAlimento.Designer.vb">
-      <DependentUpon>InterfazAlimento.vb</DependentUpon>
+    <Compile Include="Forms\FrmAlimento.Designer.vb">
+      <DependentUpon>FrmAlimento.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\InterfazBinesHielo.Designer.vb">
@@ -127,8 +127,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\InterfazAlimento.resx">
-      <DependentUpon>InterfazAlimento.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmAlimento.resx">
+      <DependentUpon>FrmAlimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterfazBinesHielo.resx">
       <DependentUpon>InterfazBinesHielo.vb</DependentUpon>
