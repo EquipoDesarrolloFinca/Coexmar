@@ -83,9 +83,9 @@ Partial Class InterfazProducto
         Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(155, 28)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(197, 24)
+        Me.Label2.Size = New System.Drawing.Size(203, 24)
         Me.Label2.TabIndex = 4
-        Me.Label2.Text = "Código de Producto"
+        Me.Label2.Text = "Código de Producto:"
         '
         'Label3
         '
@@ -93,7 +93,7 @@ Partial Class InterfazProducto
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(155, 76)
+        Me.Label3.Location = New System.Drawing.Point(255, 76)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(103, 22)
         Me.Label3.TabIndex = 6
