@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Coexmar.FrmAlimento
+            Me.MainForm = Global.Coexmar.FrmComion
         End Sub
     End Class
 End Namespace
