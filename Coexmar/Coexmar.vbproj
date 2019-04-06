@@ -79,10 +79,10 @@
     <Compile Include="Forms\FrmBinesHielo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAlimento.Designer.vb">
+    <Compile Include="Forms\FrmAlimento.Designer.vb">
       <DependentUpon>FrmAlimento.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmAlimento.vb">
+    <Compile Include="Forms\FrmAlimento.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -105,7 +105,7 @@
     <EmbeddedResource Include="Forms\FrmBinesHielo.resx">
       <DependentUpon>FrmBinesHielo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmAlimento.resx">
+    <EmbeddedResource Include="Forms\FrmAlimento.resx">
       <DependentUpon>FrmAlimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

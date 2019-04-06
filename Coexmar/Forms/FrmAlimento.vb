@@ -17,6 +17,44 @@ Public Class FrmAlimento
         PbxLogo.Visible = True
         LsvAlimentos.Visible = False
     End Sub
+
+    Private Sub MostrarTodo()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+
+        Using CMd As New SqlCommand
+            Cn.Open()
+
+            Try
+                With CMd
+                    .CommandText = "Sp_MostrarAlimentos"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+
+                End With
+
+                Dim VerAlimento As SqlDataReader
+                VerAlimento = CMd.ExecuteReader
+
+                LsvAlimentos.Items.Clear()
+                While VerAlimento.Read = True
+                    With LsvAlimentos.Items.Add(VerAlimento("IdAlimento").ToString)
+                        .SubItems.Add(VerAlimento("Alimento").ToString)
+                    End With
+                End While
+
+            Catch ex As Exception
+
+                MessageBox.Show("Error al Mostrar alimento", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cn.Close()
+
+            End Try
+        End Using
+    End Sub
+
+
     ' Almacena datos en la tabla Alimento
     Private Sub GuardarAlimento()
         If Cn.State = ConnectionState.Open Then
@@ -125,10 +163,7 @@ Public Class FrmAlimento
         Return Estado
     End Function
     ' Pone en blanco los TextBox
-    Private Sub Limpiar()
-        TxtIdAlimento.Text = Nothing
-        TxtAlimento.Text = Nothing
-    End Sub
+
 
     ' resetea el Error Provider (EpMensaje)
     ' y coloca su color de fondo Habitual (Blanco)
@@ -185,11 +220,17 @@ Public Class FrmAlimento
 
     End Sub
 
+    Private Sub Limpiar()
+        TxtIdAlimento.Text = Nothing
+        TxtAlimento.Text = Nothing
+    End Sub
+
     Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
         If ValidarTextBoxModificar() = True Then
             HabilitarBotones(True, False, True, False)
             TxtAlimento.ReadOnly = True
             TxtIdAlimento.ReadOnly = True
+            TxtIdAlimento.BackColor = Color.WhiteSmoke
             ModificarAlimento()
             MostrarTodo()
             Limpiar()
@@ -236,6 +277,35 @@ Public Class FrmAlimento
         EliminarAlimentos()
         MostrarTodo()
         HabilitarBotones(True, True, True, True)
+    End Sub
+
+    Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
+        NuevoAlimento()
+        TxtAlimento.ReadOnly = False
+        HabilitarBotones(False, True, False, True)
+        TxtAlimento.Focus()
+    End Sub
+
+    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+        If ValidarTextBox() = True Then
+            HabilitarBotones(True, False, True, False)
+            TxtAlimento.ReadOnly = True
+            GuardarAlimento()
+            MostrarTodo()
+            Limpiar()
+        End If
+
+    End Sub
+
+    Private Sub ChkVer_CheckedChanged(sender As Object, e As EventArgs) Handles ChkVer.CheckedChanged
+        If ChkVer.CheckState = CheckState.Checked Then
+            LsvAlimentos.Visible = True
+            PbxLogo.Visible = False
+            MostrarTodo()
+        Else
+            PbxLogo.Visible = True
+            LsvAlimentos.Visible = False
+        End If
     End Sub
 End Class
 

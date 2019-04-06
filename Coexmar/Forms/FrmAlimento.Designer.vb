@@ -34,6 +34,7 @@ Partial Class FrmAlimento
         Me.EpMensaje = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.PIzquierdo = New System.Windows.Forms.Panel()
+        Me.BtnCancelar = New System.Windows.Forms.Button()
         Me.BtnModificar = New System.Windows.Forms.Button()
         Me.BtnNuevo = New System.Windows.Forms.Button()
         Me.BtnGuardar = New System.Windows.Forms.Button()
@@ -43,6 +44,9 @@ Partial Class FrmAlimento
         Me.TxtAlimento = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.BtnCerrar = New System.Windows.Forms.Button()
+        Me.CmsOpciones = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,6 +55,7 @@ Partial Class FrmAlimento
         Me.GroupBox1.SuspendLayout()
         Me.PIzquierdo.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.CmsOpciones.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -59,7 +64,7 @@ Partial Class FrmAlimento
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 215)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(800, 200)
+        Me.Panel2.Size = New System.Drawing.Size(1024, 246)
         Me.Panel2.TabIndex = 12
         '
         'Panel3
@@ -69,14 +74,15 @@ Partial Class FrmAlimento
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(800, 200)
+        Me.Panel3.Size = New System.Drawing.Size(1024, 246)
         Me.Panel3.TabIndex = 1
         '
         'PbxLogo
         '
         Me.PbxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.PbxLogo.BackgroundImage = Global.Coexmar.My.Resources.Resources.CoexmarLogoMod
         Me.PbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxLogo.Location = New System.Drawing.Point(245, 57)
+        Me.PbxLogo.Location = New System.Drawing.Point(357, 13)
         Me.PbxLogo.Name = "PbxLogo"
         Me.PbxLogo.Size = New System.Drawing.Size(358, 229)
         Me.PbxLogo.TabIndex = 2
@@ -89,14 +95,14 @@ Partial Class FrmAlimento
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(800, 200)
+        Me.Panel4.Size = New System.Drawing.Size(1024, 246)
         Me.Panel4.TabIndex = 4
         '
         'ChkVer
         '
         Me.ChkVer.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.ChkVer.AutoSize = True
-        Me.ChkVer.Location = New System.Drawing.Point(644, 16)
+        Me.ChkVer.Location = New System.Drawing.Point(756, 16)
         Me.ChkVer.Name = "ChkVer"
         Me.ChkVer.Size = New System.Drawing.Size(73, 17)
         Me.ChkVer.TabIndex = 3
@@ -107,11 +113,13 @@ Partial Class FrmAlimento
         '
         Me.LsvAlimentos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.LsvAlimentos.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ChIdAlimeto, Me.ChAlimento})
+        Me.LsvAlimentos.ContextMenuStrip = Me.CmsOpciones
         Me.LsvAlimentos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LsvAlimentos.FullRowSelect = True
         Me.LsvAlimentos.GridLines = True
-        Me.LsvAlimentos.Location = New System.Drawing.Point(261, 0)
+        Me.LsvAlimentos.Location = New System.Drawing.Point(373, 0)
         Me.LsvAlimentos.Name = "LsvAlimentos"
-        Me.LsvAlimentos.Size = New System.Drawing.Size(325, 200)
+        Me.LsvAlimentos.Size = New System.Drawing.Size(325, 246)
         Me.LsvAlimentos.TabIndex = 0
         Me.LsvAlimentos.UseCompatibleStateImageBehavior = False
         Me.LsvAlimentos.View = System.Windows.Forms.View.Details
@@ -143,29 +151,46 @@ Partial Class FrmAlimento
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(0)
-        Me.GroupBox1.Size = New System.Drawing.Size(800, 215)
+        Me.GroupBox1.Size = New System.Drawing.Size(1024, 215)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         '
         'PIzquierdo
         '
         Me.PIzquierdo.BackColor = System.Drawing.Color.Navy
+        Me.PIzquierdo.Controls.Add(Me.BtnCancelar)
         Me.PIzquierdo.Controls.Add(Me.BtnModificar)
         Me.PIzquierdo.Controls.Add(Me.BtnNuevo)
         Me.PIzquierdo.Controls.Add(Me.BtnGuardar)
         Me.PIzquierdo.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PIzquierdo.Location = New System.Drawing.Point(0, 167)
         Me.PIzquierdo.Name = "PIzquierdo"
-        Me.PIzquierdo.Size = New System.Drawing.Size(800, 48)
+        Me.PIzquierdo.Size = New System.Drawing.Size(1024, 48)
         Me.PIzquierdo.TabIndex = 7
+        '
+        'BtnCancelar
+        '
+        Me.BtnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.BtnCancelar.BackColor = System.Drawing.Color.White
+        Me.BtnCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCancelar.Image = Global.Coexmar.My.Resources.Resources.IconCancelar2
+        Me.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnCancelar.Location = New System.Drawing.Point(706, 0)
+        Me.BtnCancelar.Name = "BtnCancelar"
+        Me.BtnCancelar.Size = New System.Drawing.Size(123, 48)
+        Me.BtnCancelar.TabIndex = 11
+        Me.BtnCancelar.Text = "Cancelar"
+        Me.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnCancelar.UseVisualStyleBackColor = False
         '
         'BtnModificar
         '
         Me.BtnModificar.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.BtnModificar.BackColor = System.Drawing.Color.White
         Me.BtnModificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnModificar.Image = Global.Coexmar.My.Resources.Resources.IconModificar
         Me.BtnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnModificar.Location = New System.Drawing.Point(520, 0)
+        Me.BtnModificar.Location = New System.Drawing.Point(536, 0)
         Me.BtnModificar.Name = "BtnModificar"
         Me.BtnModificar.Size = New System.Drawing.Size(123, 48)
         Me.BtnModificar.TabIndex = 10
@@ -179,8 +204,9 @@ Partial Class FrmAlimento
         Me.BtnNuevo.BackColor = System.Drawing.Color.White
         Me.BtnNuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnNuevo.Image = Global.Coexmar.My.Resources.Resources.IconNuevo
         Me.BtnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnNuevo.Location = New System.Drawing.Point(175, 0)
+        Me.BtnNuevo.Location = New System.Drawing.Point(222, 0)
         Me.BtnNuevo.Name = "BtnNuevo"
         Me.BtnNuevo.Size = New System.Drawing.Size(103, 48)
         Me.BtnNuevo.TabIndex = 8
@@ -193,8 +219,9 @@ Partial Class FrmAlimento
         Me.BtnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.BtnGuardar.BackColor = System.Drawing.Color.White
         Me.BtnGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnGuardar.Image = Global.Coexmar.My.Resources.Resources.IconGuardar__2_
         Me.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnGuardar.Location = New System.Drawing.Point(345, 0)
+        Me.BtnGuardar.Location = New System.Drawing.Point(373, 0)
         Me.BtnGuardar.Name = "BtnGuardar"
         Me.BtnGuardar.Size = New System.Drawing.Size(114, 48)
         Me.BtnGuardar.TabIndex = 9
@@ -208,7 +235,7 @@ Partial Class FrmAlimento
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(173, 32)
+        Me.Label2.Location = New System.Drawing.Point(285, 32)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(171, 24)
         Me.Label2.TabIndex = 4
@@ -220,7 +247,7 @@ Partial Class FrmAlimento
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(246, 73)
+        Me.Label3.Location = New System.Drawing.Point(358, 73)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(98, 22)
         Me.Label3.TabIndex = 6
@@ -231,7 +258,7 @@ Partial Class FrmAlimento
         Me.TxtIdAlimento.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.TxtIdAlimento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtIdAlimento.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtIdAlimento.Location = New System.Drawing.Point(350, 31)
+        Me.TxtIdAlimento.Location = New System.Drawing.Point(462, 31)
         Me.TxtIdAlimento.Name = "TxtIdAlimento"
         Me.TxtIdAlimento.ReadOnly = True
         Me.TxtIdAlimento.Size = New System.Drawing.Size(109, 29)
@@ -242,7 +269,7 @@ Partial Class FrmAlimento
         Me.TxtAlimento.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.TxtAlimento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtAlimento.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtAlimento.Location = New System.Drawing.Point(350, 69)
+        Me.TxtAlimento.Location = New System.Drawing.Point(462, 69)
         Me.TxtAlimento.Name = "TxtAlimento"
         Me.TxtAlimento.Size = New System.Drawing.Size(252, 29)
         Me.TxtAlimento.TabIndex = 5
@@ -251,13 +278,14 @@ Partial Class FrmAlimento
         '
         Me.Panel1.Controls.Add(Me.BtnCerrar)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 415)
+        Me.Panel1.Location = New System.Drawing.Point(0, 461)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(800, 35)
+        Me.Panel1.Size = New System.Drawing.Size(1024, 35)
         Me.Panel1.TabIndex = 11
         '
         'BtnCerrar
         '
+        Me.BtnCerrar.BackgroundImage = Global.Coexmar.My.Resources.Resources.IconCerrar
         Me.BtnCerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.BtnCerrar.FlatAppearance.BorderSize = 0
         Me.BtnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
@@ -268,14 +296,34 @@ Partial Class FrmAlimento
         Me.BtnCerrar.TabIndex = 1
         Me.BtnCerrar.UseVisualStyleBackColor = True
         '
+        'CmsOpciones
+        '
+        Me.CmsOpciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditarToolStripMenuItem, Me.EliminarToolStripMenuItem})
+        Me.CmsOpciones.Name = "CmsOpciones"
+        Me.CmsOpciones.Size = New System.Drawing.Size(118, 48)
+        '
+        'EditarToolStripMenuItem
+        '
+        Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EditarToolStripMenuItem.Text = "Editar"
+        '
+        'EliminarToolStripMenuItem
+        '
+        Me.EliminarToolStripMenuItem.BackColor = System.Drawing.Color.Salmon
+        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
+        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EliminarToolStripMenuItem.Text = "Eliminar"
+        '
         'FrmAlimento
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1024, 496)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FrmAlimento"
         Me.Text = "FrmAlimento"
         Me.Panel2.ResumeLayout(False)
@@ -288,6 +336,7 @@ Partial Class FrmAlimento
         Me.GroupBox1.PerformLayout()
         Me.PIzquierdo.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
+        Me.CmsOpciones.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -312,4 +361,8 @@ Partial Class FrmAlimento
     Friend WithEvents TxtAlimento As TextBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents BtnCerrar As Button
+    Friend WithEvents CmsOpciones As ContextMenuStrip
+    Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EliminarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnCancelar As Button
 End Class
