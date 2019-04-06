@@ -525,13 +525,13 @@ Public Class FrmBinesHielo
         End If
     End Sub
 
-    Private Sub BtnCerrar_Click_1(sender As Object, e As EventArgs)
+    Private Sub BtnCerrar_Click_1(sender As Object, e As EventArgs) Handles BtnCerrar.Click
         ' InterfazPrincipal.PbxLogo.Visible = True
         ' InterfazPrincipal.LblTitulo.Text = "COEXMAR-FINCA"
         Close()
     End Sub
 
-    Private Sub BtnNuevo_Click_1(sender As Object, e As EventArgs)
+    Private Sub BtnNuevo_Click_1(sender As Object, e As EventArgs) Handles BtnNuevo.Click
         HabilitarBotones(False, True, False, True)
         TxtIdBin.ReadOnly = False
         TxtCantidad.ReadOnly = False
@@ -543,7 +543,7 @@ Public Class FrmBinesHielo
         LLenarCboPlacaCamion()
     End Sub
 
-    Private Sub BtnGuardar_Click_1(sender As Object, e As EventArgs)
+    Private Sub BtnGuardar_Click_1(sender As Object, e As EventArgs) Handles BtnGuardar.Click
 
         If ValidarTextBox() = True Then
             HabilitarBotones(True, False, True, False)
@@ -559,7 +559,7 @@ Public Class FrmBinesHielo
         End If
     End Sub
 
-    Private Sub BtnModificar_Click_1(sender As Object, e As EventArgs)
+    Private Sub BtnModificar_Click_1(sender As Object, e As EventArgs) Handles BtnModificar.Click
         If ValidarTextBoxModificar() = True Then
             HabilitarBotones(True, False, True, False)
             TxtIdBin.ReadOnly = True
@@ -575,7 +575,7 @@ Public Class FrmBinesHielo
 
     End Sub
 
-    Private Sub BtnCancelar_Click_1(sender As Object, e As EventArgs)
+    Private Sub BtnCancelar_Click_1(sender As Object, e As EventArgs) Handles BtnCancelar.Click
         HabilitarBotones(True, False, True, False)
 
         TxtIdBin.ReadOnly = True

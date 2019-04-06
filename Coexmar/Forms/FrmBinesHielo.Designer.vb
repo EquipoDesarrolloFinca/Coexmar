@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class FrmBinesHielo
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,10 +20,20 @@ Partial Class FrmBinesHielo
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.EpMensaje = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ChIdBinesHielo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.PbxLogo = New System.Windows.Forms.PictureBox()
+        Me.LsvBinesHielo = New System.Windows.Forms.ListView()
+        Me.ChFecha = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ChNumIdentidadConductor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ChNumPlaca = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ChCantidad = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ChHoraLlegada = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ChIdProveedor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ChIdUsuario = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.CmsOpciones = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -54,18 +64,9 @@ Partial Class FrmBinesHielo
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TxtIdBin = New System.Windows.Forms.TextBox()
-        Me.PbxLogo = New System.Windows.Forms.PictureBox()
         Me.TpRegistros = New System.Windows.Forms.TabPage()
-        Me.LsvBinesHielo = New System.Windows.Forms.ListView()
-        Me.ChIdBinesHielo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChFecha = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChNumIdentidadConductor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChNumPlaca = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChCantidad = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChHoraLlegada = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChIdProveedor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ChIdUsuario = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         CType(Me.EpMensaje, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CmsOpciones.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.TcDatos.SuspendLayout()
@@ -73,13 +74,78 @@ Partial Class FrmBinesHielo
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TpRegistros.SuspendLayout()
         Me.SuspendLayout()
         '
         'EpMensaje
         '
         Me.EpMensaje.ContainerControl = Me
+        '
+        'ChIdBinesHielo
+        '
+        Me.ChIdBinesHielo.Text = "Código Bin"
+        Me.ChIdBinesHielo.Width = 80
+        '
+        'PbxLogo
+        '
+        Me.PbxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.PbxLogo.BackgroundImage = Global.Coexmar.My.Resources.Resources.CoexmarLogoMod
+        Me.PbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PbxLogo.Location = New System.Drawing.Point(421, 294)
+        Me.PbxLogo.Name = "PbxLogo"
+        Me.PbxLogo.Size = New System.Drawing.Size(277, 198)
+        Me.PbxLogo.TabIndex = 2
+        Me.PbxLogo.TabStop = False
+        '
+        'LsvBinesHielo
+        '
+        Me.LsvBinesHielo.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ChIdBinesHielo, Me.ChFecha, Me.ChNumIdentidadConductor, Me.ChNumPlaca, Me.ChCantidad, Me.ChHoraLlegada, Me.ChIdProveedor, Me.ChIdUsuario})
+        Me.LsvBinesHielo.ContextMenuStrip = Me.CmsOpciones
+        Me.LsvBinesHielo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LsvBinesHielo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LsvBinesHielo.FullRowSelect = True
+        Me.LsvBinesHielo.GridLines = True
+        Me.LsvBinesHielo.Location = New System.Drawing.Point(3, 3)
+        Me.LsvBinesHielo.Name = "LsvBinesHielo"
+        Me.LsvBinesHielo.Size = New System.Drawing.Size(1030, 510)
+        Me.LsvBinesHielo.TabIndex = 0
+        Me.LsvBinesHielo.UseCompatibleStateImageBehavior = False
+        Me.LsvBinesHielo.View = System.Windows.Forms.View.Details
+        '
+        'ChFecha
+        '
+        Me.ChFecha.Text = "Fecha"
+        Me.ChFecha.Width = 123
+        '
+        'ChNumIdentidadConductor
+        '
+        Me.ChNumIdentidadConductor.Text = "Identidad Conductor"
+        Me.ChNumIdentidadConductor.Width = 200
+        '
+        'ChNumPlaca
+        '
+        Me.ChNumPlaca.Text = "Placa del Camión"
+        Me.ChNumPlaca.Width = 122
+        '
+        'ChCantidad
+        '
+        Me.ChCantidad.Text = "Cantidad"
+        Me.ChCantidad.Width = 95
+        '
+        'ChHoraLlegada
+        '
+        Me.ChHoraLlegada.Text = "Hora de Llegada"
+        Me.ChHoraLlegada.Width = 117
+        '
+        'ChIdProveedor
+        '
+        Me.ChIdProveedor.Text = "Proveedor"
+        Me.ChIdProveedor.Width = 124
+        '
+        'ChIdUsuario
+        '
+        Me.ChIdUsuario.Text = "Usuario"
+        Me.ChIdUsuario.Width = 120
         '
         'CmsOpciones
         '
@@ -120,7 +186,7 @@ Partial Class FrmBinesHielo
         Me.TcDatos.Name = "TcDatos"
         Me.TcDatos.SelectedIndex = 0
         Me.TcDatos.Size = New System.Drawing.Size(1044, 545)
-        Me.TcDatos.TabIndex = 10
+        Me.TcDatos.TabIndex = 9
         '
         'TpDatos
         '
@@ -436,17 +502,6 @@ Partial Class FrmBinesHielo
         Me.TxtIdBin.Size = New System.Drawing.Size(197, 29)
         Me.TxtIdBin.TabIndex = 3
         '
-        'PbxLogo
-        '
-        Me.PbxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.PbxLogo.BackgroundImage = Global.Coexmar.My.Resources.Resources.CoexmarLogoMod
-        Me.PbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxLogo.Location = New System.Drawing.Point(421, 294)
-        Me.PbxLogo.Name = "PbxLogo"
-        Me.PbxLogo.Size = New System.Drawing.Size(277, 198)
-        Me.PbxLogo.TabIndex = 2
-        Me.PbxLogo.TabStop = False
-        '
         'TpRegistros
         '
         Me.TpRegistros.Controls.Add(Me.LsvBinesHielo)
@@ -458,61 +513,6 @@ Partial Class FrmBinesHielo
         Me.TpRegistros.Text = "Registros"
         Me.TpRegistros.UseVisualStyleBackColor = True
         '
-        'LsvBinesHielo
-        '
-        Me.LsvBinesHielo.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ChIdBinesHielo, Me.ChFecha, Me.ChNumIdentidadConductor, Me.ChNumPlaca, Me.ChCantidad, Me.ChHoraLlegada, Me.ChIdProveedor, Me.ChIdUsuario})
-        Me.LsvBinesHielo.ContextMenuStrip = Me.CmsOpciones
-        Me.LsvBinesHielo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LsvBinesHielo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LsvBinesHielo.FullRowSelect = True
-        Me.LsvBinesHielo.GridLines = True
-        Me.LsvBinesHielo.Location = New System.Drawing.Point(3, 3)
-        Me.LsvBinesHielo.Name = "LsvBinesHielo"
-        Me.LsvBinesHielo.Size = New System.Drawing.Size(1030, 510)
-        Me.LsvBinesHielo.TabIndex = 0
-        Me.LsvBinesHielo.UseCompatibleStateImageBehavior = False
-        Me.LsvBinesHielo.View = System.Windows.Forms.View.Details
-        '
-        'ChIdBinesHielo
-        '
-        Me.ChIdBinesHielo.Text = "Código Bin"
-        Me.ChIdBinesHielo.Width = 80
-        '
-        'ChFecha
-        '
-        Me.ChFecha.Text = "Fecha"
-        Me.ChFecha.Width = 123
-        '
-        'ChNumIdentidadConductor
-        '
-        Me.ChNumIdentidadConductor.Text = "Identidad Conductor"
-        Me.ChNumIdentidadConductor.Width = 200
-        '
-        'ChNumPlaca
-        '
-        Me.ChNumPlaca.Text = "Placa del Camión"
-        Me.ChNumPlaca.Width = 122
-        '
-        'ChCantidad
-        '
-        Me.ChCantidad.Text = "Cantidad"
-        Me.ChCantidad.Width = 95
-        '
-        'ChHoraLlegada
-        '
-        Me.ChHoraLlegada.Text = "Hora de Llegada"
-        Me.ChHoraLlegada.Width = 117
-        '
-        'ChIdProveedor
-        '
-        Me.ChIdProveedor.Text = "Proveedor"
-        Me.ChIdProveedor.Width = 124
-        '
-        'ChIdUsuario
-        '
-        Me.ChIdUsuario.Text = "Usuario"
-        Me.ChIdUsuario.Width = 120
-        '
         'FrmBinesHielo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -523,6 +523,7 @@ Partial Class FrmBinesHielo
         Me.Name = "FrmBinesHielo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         CType(Me.EpMensaje, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CmsOpciones.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.TcDatos.ResumeLayout(False)
@@ -531,7 +532,6 @@ Partial Class FrmBinesHielo
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TpRegistros.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -539,6 +539,16 @@ Partial Class FrmBinesHielo
 
     Friend WithEvents EpMensaje As ErrorProvider
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents PbxLogo As PictureBox
+    Friend WithEvents LsvBinesHielo As ListView
+    Friend WithEvents ChIdBinesHielo As ColumnHeader
+    Friend WithEvents ChFecha As ColumnHeader
+    Friend WithEvents ChNumIdentidadConductor As ColumnHeader
+    Friend WithEvents ChNumPlaca As ColumnHeader
+    Friend WithEvents ChCantidad As ColumnHeader
+    Friend WithEvents ChHoraLlegada As ColumnHeader
+    Friend WithEvents ChIdProveedor As ColumnHeader
+    Friend WithEvents ChIdUsuario As ColumnHeader
     Friend WithEvents CmsOpciones As ContextMenuStrip
     Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EliminarToolStripMenuItem As ToolStripMenuItem
@@ -568,15 +578,5 @@ Partial Class FrmBinesHielo
     Friend WithEvents Label15 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents TxtIdBin As TextBox
-    Friend WithEvents PbxLogo As PictureBox
     Friend WithEvents TpRegistros As TabPage
-    Friend WithEvents LsvBinesHielo As ListView
-    Friend WithEvents ChIdBinesHielo As ColumnHeader
-    Friend WithEvents ChFecha As ColumnHeader
-    Friend WithEvents ChNumIdentidadConductor As ColumnHeader
-    Friend WithEvents ChNumPlaca As ColumnHeader
-    Friend WithEvents ChCantidad As ColumnHeader
-    Friend WithEvents ChHoraLlegada As ColumnHeader
-    Friend WithEvents ChIdProveedor As ColumnHeader
-    Friend WithEvents ChIdUsuario As ColumnHeader
 End Class
