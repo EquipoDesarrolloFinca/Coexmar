@@ -2,7 +2,7 @@
 Public Class InterfazProveedor
     Dim EstadoModificado As Boolean
     ' Cierra el formulario hijo y cambia el titulo del formulario padre 
-    Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
+    Private Sub BtnCerrar_Click(sender As Object, e As EventArgs)
         ' InterfazPrincipal.PbxLogo.Visible = True
         ' InterfazPrincipal.LblTitulo.Text = "COEXMAR-FINCA"
         Close()
@@ -12,7 +12,7 @@ Public Class InterfazProveedor
         If ChkVer.CheckState = CheckState.Checked Then
             LsvProveedor.Visible = True
             PbxLogo.Visible = False
-            MostrarTodo()
+            MostrarProveedor()
         Else
             PbxLogo.Visible = True
             LsvProveedor.Visible = False
@@ -21,12 +21,76 @@ Public Class InterfazProveedor
     ' Se cargan las instrucciones que se ejecutaran al iniciar el formulario
     Private Sub InterfazProveedor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         EstadoModificado = False
-        TxtNombreProveedor.ReadOnly = True
-        TxtCodigoProveedor.ReadOnly = True
+        TxtIdProveedor.ReadOnly = True
         PbxLogo.Visible = True
         LsvProveedor.Visible = False
     End Sub
     ' Almacena datos en la tabla Alimento
+
+    Private Sub LlenarProducto()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+        Using Cmd As New SqlCommand
+            Cn.Open()
+            Try
+                With Cmd
+                    .CommandText = "Sp_MostrarProductos"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+                End With
+
+                Dim Da As New SqlDataAdapter(Cmd)
+
+                Dim Ds As New DataSet
+                Da.Fill(Ds, "Producto")
+                CboProducto.DataSource = Ds.Tables(0)
+                CboProducto.DisplayMember = Ds.Tables(0).Columns("Producto").ToString
+                CboProducto.ValueMember = Ds.Tables(0).Columns("IdProducto").ToString
+
+            Catch ex As Exception
+                MessageBox.Show("Error al consultar los datos." + ex.Message, "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cn.Close()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub EliminarProveedor()
+
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+
+        Try
+            Cn.Open()
+            Using Cmd As New SqlCommand
+                With Cmd
+                    .CommandText = "Sp_EliminarProveedores"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+
+                    ' Enviar el parámetro del nombre del genero musical
+                    Dim Id As Integer
+                    Id = CInt(LsvProveedor.FocusedItem.SubItems(0).Text)
+
+                    .Parameters.Add("@IdProveedor", SqlDbType.Int).Value = Id
+                    .ExecuteNonQuery()
+
+                    MessageBox.Show("Registro eliminado satisfactoriamente", "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
+
+                End With
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error al eliminar proveedor", "CientificaMisic", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            Cn.Close()
+        End Try
+
+    End Sub
+
     Private Sub GuardarProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
@@ -40,22 +104,27 @@ Public Class InterfazProveedor
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
 
+                    ' Enviar el parámetro del nombre del genero musical
+
                     .Parameters.Add("@NombreProveedor", SqlDbType.NVarChar, 40).Value = TxtNombreProveedor.Text
+                    .Parameters.Add("@IdProducto", SqlDbType.Int).Value = CInt(CboProducto.SelectedValue)
                     .ExecuteNonQuery()
 
-                    MessageBox.Show("Registro almacenado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Registro almacenado satisfactoriamente", "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
 
                 End With
             End Using
-
         Catch ex As Exception
-            MessageBox.Show("Error al insertar el Proveedor", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al insertar proveedor", "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
+
     End Sub
     ' 
-    Private Sub ModificarProveedor()
+    Private Sub ActualizarProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
@@ -64,29 +133,36 @@ Public Class InterfazProveedor
             Cn.Open()
             Using Cmd As New SqlCommand
                 With Cmd
-                    .CommandText = "Sp_ModificarProveedor"
+                    .CommandText = "Sp_ActualizarProveedores"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
-                    .Parameters.Add("@IdProveedor", SqlDbType.NVarChar, 30).Value = TxtCodigoProveedor.Text
-                    .Parameters.Add("@NombreProveedor", SqlDbType.NVarChar, 30).Value = TxtNombreProveedor.Text
+
+                    ' Enviar el parámetro del nombre del genero musical
+
+                    .Parameters.Add("@NombreProveedor", SqlDbType.NVarChar, 40).Value = TxtNombreProveedor.Text
+                    .Parameters.Add("@IdProveedor", SqlDbType.Int).Value = CInt(TxtIdProveedor.Text)
+                    .Parameters.Add("@IdProducto", SqlDbType.Int).Value = CInt(CboProducto.SelectedValue)
+
                     .ExecuteNonQuery()
 
-                    MessageBox.Show("Registro modificado satisfactoriamente", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Registro actualizado satisfactoriamente", "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
 
                 End With
             End Using
-
         Catch ex As Exception
-            MessageBox.Show("Error al modificar el Proveedor", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al actualizar el nombre del proveedor" + ex.Message, "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
+
     End Sub
 
     ' bloquea los botones,excepto BtnGuardar. ejecuta el Sub procedimiento NuevoAlimento(), habilita el TxtAlimento y lo enfoca 
     Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
-
-        NuevoProveedor()
+        LlenarProducto()
+        InvestigarCorrelaticoProveedor()
         TxtNombreProveedor.ReadOnly = False
         HabilitarBotones(False, True, False, True)
         TxtNombreProveedor.Focus()
@@ -119,16 +195,16 @@ Public Class InterfazProveedor
     Private Function ValidarTextBoxModificar()
         Dim Estado As Boolean
 
-        If TxtNombreProveedor.Text = Nothing And TxtCodigoProveedor.Text = Nothing Then
-            EpMensaje.SetError(TxtCodigoProveedor, "Tiene que ingresar Codigo Proveedor")
+        If TxtNombreProveedor.Text = Nothing And TxtIdProveedor.Text = Nothing Then
+            EpMensaje.SetError(TxtIdProveedor, "Tiene que ingresar Codigo Proveedor")
             EpMensaje.SetError(TxtNombreProveedor, "Tiene que ingresar Proveedor")
-            TxtCodigoProveedor.Focus()
-            TxtCodigoProveedor.BackColor = Color.LightBlue
+            TxtIdProveedor.Focus()
+            TxtIdProveedor.BackColor = Color.LightBlue
             Estado = False
-        ElseIf TxtCodigoProveedor.Text = Nothing Then
-            EpMensaje.SetError(TxtCodigoProveedor, "Tiene que ingresar el Codigo Proveedor")
-            TxtCodigoProveedor.Focus()
-            TxtCodigoProveedor.BackColor = Color.LightBlue
+        ElseIf TxtIdProveedor.Text = Nothing Then
+            EpMensaje.SetError(TxtIdProveedor, "Tiene que ingresar el Codigo Proveedor")
+            TxtIdProveedor.Focus()
+            TxtIdProveedor.BackColor = Color.LightBlue
             Estado = False
         ElseIf TxtNombreProveedor.Text = Nothing Then
             EpMensaje.SetError(TxtNombreProveedor, "Tiene que ingresar el Proveedor")
@@ -138,7 +214,7 @@ Public Class InterfazProveedor
         Else
             Estado = True
             EpMensaje.SetError(TxtNombreProveedor, "")
-            EpMensaje.SetError(TxtCodigoProveedor, "")
+            EpMensaje.SetError(TxtIdProveedor, "")
 
         End If
         Return Estado
@@ -151,12 +227,9 @@ Public Class InterfazProveedor
 
         If EstadoModificado = True Then
             If ValidarTextBoxModificar() = True Then
-                HabilitarBotones(True, False, True, False)
-                TxtNombreProveedor.ReadOnly = True
-                TxtCodigoProveedor.ReadOnly = True
-                ModificarProveedor()
-                MostrarTodo()
-                Limpiar()
+                GuardarProveedor()
+                HabilitarBotones(True, False, False, False)
+                MostrarProveedor()
                 EstadoModificado = False
             End If
         Else
@@ -164,51 +237,47 @@ Public Class InterfazProveedor
                 HabilitarBotones(True, False, True, False)
                 TxtNombreProveedor.ReadOnly = True
                 GuardarProveedor()
-                MostrarTodo()
+                MostrarProveedor()
                 Limpiar()
             End If
         End If
 
     End Sub
     ' Pasa todos los datos de la Tabla Alimento a la LsvAlimento
-    Private Sub MostrarTodo()
+    Private Sub MostrarProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
-
-        Using CMd As New SqlCommand
+        Using Cmd As New SqlCommand
             Cn.Open()
-
             Try
-                With CMd
-                    .CommandText = "Sp_MostrarProveedor"
+                With Cmd
+                    .CommandText = "Sp_MostrarProveedores"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
-
                 End With
 
-                Dim VerProveedor As SqlDataReader
-                VerProveedor = CMd.ExecuteReader
+                Dim VerCiudad As SqlDataReader
+                VerCiudad = Cmd.ExecuteReader()
 
                 LsvProveedor.Items.Clear()
-                While VerProveedor.Read = True
-                    With LsvProveedor.Items.Add(VerProveedor("Codigo Proveedor").ToString)
-                        .SubItems.Add(VerProveedor("Nombre Proveedor").ToString)
+                While VerCiudad.Read = True
+                    With LsvProveedor.Items.Add(VerCiudad("IdProveedor").ToString)
+                        .SubItems.Add(VerCiudad("NombreProveedor").ToString)
+                        .SubItems.Add(VerCiudad("Producto").ToString)
                     End With
                 End While
 
             Catch ex As Exception
-
-                MessageBox.Show("Error al insertar Proveedor", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error en mostrar." + ex.Message, "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 Cn.Close()
-
             End Try
         End Using
     End Sub
     ' Pone en blanco los TextBox
     Private Sub Limpiar()
-        TxtCodigoProveedor.Text = Nothing
+        TxtIdProveedor.Text = Nothing
         TxtNombreProveedor.Text = Nothing
     End Sub
 
@@ -221,64 +290,78 @@ Public Class InterfazProveedor
         End If
     End Sub
 
-    Private Sub TTxtCodigoProveedo_TextChanged(sender As Object, e As EventArgs) Handles TxtCodigoProveedor.TextChanged
-        If TxtCodigoProveedor.Text <> Nothing Then
-            EpMensaje.SetError(TxtCodigoProveedor, "")
-            TxtCodigoProveedor.BackColor = Color.White
+    Private Sub TTxtCodigoProveedo_TextChanged(sender As Object, e As EventArgs) Handles TxtIdProveedor.TextChanged
+        If TxtIdProveedor.Text <> Nothing Then
+            EpMensaje.SetError(TxtIdProveedor, "")
+            TxtIdProveedor.BackColor = Color.White
         End If
     End Sub
     ' obtiene el correlativo de la Tabla Alimento que sera mostrado en TxtIdAlimento
-    Private Sub NuevoProveedor()
+    Private Sub InvestigarCorrelaticoProveedor()
         If Cn.State = ConnectionState.Open Then
             Cn.Close()
         End If
 
         Try
-            Dim ListaProveedor As New SqlCommand("Sp_InvestigarCorrelativoProveedor", Cn)
-            ListaProveedor.CommandType = CommandType.StoredProcedure
-            ListaProveedor.Parameters.Add("@Proveedor", SqlDbType.NVarChar, 30).Value = "Alimento"
-            Dim ListarProveedorR As SqlDataReader
+            Dim ListarCiudad As New SqlCommand("Sp_InvestigarCorrelativoProveedor", Cn)
+            ListarCiudad.CommandType = CommandType.StoredProcedure
+            Dim ListarCiudadR As SqlDataReader
             Cn.Open()
-            ListarProveedorR = ListaProveedor.ExecuteReader()
+            ListarCiudadR = ListarCiudad.ExecuteReader()
 
-            If ListarProveedorR.Read = True Then
-                If ListarProveedorR("Codigo Proveedor") Is "" Then
-                    TxtCodigoProveedor.Text = 1
+            If ListarCiudadR.Read = True Then
+                If ListarCiudadR("IdProveedor") = 1 Then
+                    TxtIdProveedor.Text = 1
                 Else
-                    TxtCodigoProveedor.Text = ListarProveedorR("Codigo Proveedor").ToString + 1
+                    TxtIdProveedor.Text = ListarCiudadR("IdProveedor").ToString
                 End If
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error al consultar los datos" + ex.Message, "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error en investigar", "Coexmar", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
+
     End Sub
 
     Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
 
         HabilitarBotones(True, False, True, False)
         TxtNombreProveedor.ReadOnly = True
-        TxtCodigoProveedor.ReadOnly = True
-        TxtCodigoProveedor.BackColor = Color.WhiteSmoke
+        TxtIdProveedor.ReadOnly = True
+        TxtIdProveedor.BackColor = Color.WhiteSmoke
         TxtNombreProveedor.BackColor = Color.WhiteSmoke
 
         TxtNombreProveedor.Text = ""
-        TxtCodigoProveedor.Text = ""
+        TxtIdProveedor.Text = ""
 
 
     End Sub
 
     Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
-        EstadoModificado = True
-        HabilitarBotones(False, True, False, True)
-        TxtNombreProveedor.ReadOnly = False
-        TxtCodigoProveedor.ReadOnly = False
-        TxtCodigoProveedor.Focus()
-        LsvProveedor.Visible = True
-        PbxLogo.Visible = False
-        ChkVer.Checked = True
+        If ValidarTextBox() = True Then
+            ActualizarProveedor()
+            Limpiar()
+            HabilitarBotones(True, False, False, False)
+            MostrarProveedor()
+
+        End If
     End Sub
 
+    Private Sub EditarToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles EditarToolStripMenuItem.Click
+        TxtIdProveedor.Text = LsvProveedor.FocusedItem.SubItems(0).Text
+        TxtNombreProveedor.Text = LsvProveedor.FocusedItem.SubItems(1).Text
+        CboProducto.Text = LsvProveedor.FocusedItem.SubItems(2).Text
+        TxtNombreProveedor.Enabled = True
+
+        LlenarProducto()
+        HabilitarBotones(False, False, True, True)
+    End Sub
+
+    Private Sub EliminarToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles EliminarToolStripMenuItem.Click
+        EliminarProveedor()
+        MostrarProveedor()
+        HabilitarBotones(True, False, False, False)
+    End Sub
 End Class

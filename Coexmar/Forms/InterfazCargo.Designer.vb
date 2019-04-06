@@ -60,10 +60,10 @@ Partial Class InterfazCargo
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(5)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(0)
-        Me.GroupBox1.Size = New System.Drawing.Size(1352, 265)
+        Me.GroupBox1.Size = New System.Drawing.Size(1014, 215)
         Me.GroupBox1.TabIndex = 10
         Me.GroupBox1.TabStop = False
         '
@@ -73,10 +73,9 @@ Partial Class InterfazCargo
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(373, 39)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(280, 32)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(183, 29)
+        Me.Label2.Size = New System.Drawing.Size(145, 24)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Codigo Cargo:"
         '
@@ -86,10 +85,9 @@ Partial Class InterfazCargo
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(471, 90)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(353, 73)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(89, 29)
+        Me.Label3.Size = New System.Drawing.Size(74, 22)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Cargo:"
         '
@@ -98,11 +96,10 @@ Partial Class InterfazCargo
         Me.TxtIdCargo.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.TxtIdCargo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtIdCargo.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtIdCargo.Location = New System.Drawing.Point(609, 38)
-        Me.TxtIdCargo.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtIdCargo.Location = New System.Drawing.Point(457, 31)
         Me.TxtIdCargo.Name = "TxtIdCargo"
         Me.TxtIdCargo.ReadOnly = True
-        Me.TxtIdCargo.Size = New System.Drawing.Size(145, 35)
+        Me.TxtIdCargo.Size = New System.Drawing.Size(109, 29)
         Me.TxtIdCargo.TabIndex = 3
         '
         'TxtCargo
@@ -111,10 +108,9 @@ Partial Class InterfazCargo
         Me.TxtCargo.BackColor = System.Drawing.Color.WhiteSmoke
         Me.TxtCargo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCargo.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCargo.Location = New System.Drawing.Point(609, 85)
-        Me.TxtCargo.Margin = New System.Windows.Forms.Padding(4)
+        Me.TxtCargo.Location = New System.Drawing.Point(457, 69)
         Me.TxtCargo.Name = "TxtCargo"
-        Me.TxtCargo.Size = New System.Drawing.Size(335, 35)
+        Me.TxtCargo.Size = New System.Drawing.Size(252, 29)
         Me.TxtCargo.TabIndex = 5
         '
         'PIzquierdo
@@ -125,10 +121,9 @@ Partial Class InterfazCargo
         Me.PIzquierdo.Controls.Add(Me.BtnNuevo)
         Me.PIzquierdo.Controls.Add(Me.BtnGuardar)
         Me.PIzquierdo.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PIzquierdo.Location = New System.Drawing.Point(0, 206)
-        Me.PIzquierdo.Margin = New System.Windows.Forms.Padding(4)
+        Me.PIzquierdo.Location = New System.Drawing.Point(0, 167)
         Me.PIzquierdo.Name = "PIzquierdo"
-        Me.PIzquierdo.Size = New System.Drawing.Size(1352, 59)
+        Me.PIzquierdo.Size = New System.Drawing.Size(1014, 48)
         Me.PIzquierdo.TabIndex = 7
         '
         'BtnCancelar
@@ -138,10 +133,9 @@ Partial Class InterfazCargo
         Me.BtnCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnCancelar.Image = Global.Coexmar.My.Resources.Resources.IconCancelar2
         Me.BtnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnCancelar.Location = New System.Drawing.Point(949, 0)
-        Me.BtnCancelar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnCancelar.Location = New System.Drawing.Point(712, 0)
         Me.BtnCancelar.Name = "BtnCancelar"
-        Me.BtnCancelar.Size = New System.Drawing.Size(164, 59)
+        Me.BtnCancelar.Size = New System.Drawing.Size(123, 48)
         Me.BtnCancelar.TabIndex = 11
         Me.BtnCancelar.Text = "Cancelar"
         Me.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -154,10 +148,9 @@ Partial Class InterfazCargo
         Me.BtnModificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnModificar.Image = Global.Coexmar.My.Resources.Resources.IconModificar
         Me.BtnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnModificar.Location = New System.Drawing.Point(713, 0)
-        Me.BtnModificar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnModificar.Location = New System.Drawing.Point(535, 0)
         Me.BtnModificar.Name = "BtnModificar"
-        Me.BtnModificar.Size = New System.Drawing.Size(164, 59)
+        Me.BtnModificar.Size = New System.Drawing.Size(123, 48)
         Me.BtnModificar.TabIndex = 10
         Me.BtnModificar.Text = "Modificar"
         Me.BtnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -171,10 +164,9 @@ Partial Class InterfazCargo
         Me.BtnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNuevo.Image = Global.Coexmar.My.Resources.Resources.IconNuevo
         Me.BtnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnNuevo.Location = New System.Drawing.Point(284, 0)
-        Me.BtnNuevo.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnNuevo.Location = New System.Drawing.Point(213, 0)
         Me.BtnNuevo.Name = "BtnNuevo"
-        Me.BtnNuevo.Size = New System.Drawing.Size(137, 59)
+        Me.BtnNuevo.Size = New System.Drawing.Size(103, 48)
         Me.BtnNuevo.TabIndex = 8
         Me.BtnNuevo.Text = "Nuevo"
         Me.BtnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -187,10 +179,9 @@ Partial Class InterfazCargo
         Me.BtnGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnGuardar.Image = Global.Coexmar.My.Resources.Resources.IconGuardar__2_
         Me.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnGuardar.Location = New System.Drawing.Point(491, 0)
-        Me.BtnGuardar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnGuardar.Location = New System.Drawing.Point(368, 0)
         Me.BtnGuardar.Name = "BtnGuardar"
-        Me.BtnGuardar.Size = New System.Drawing.Size(152, 59)
+        Me.BtnGuardar.Size = New System.Drawing.Size(114, 48)
         Me.BtnGuardar.TabIndex = 9
         Me.BtnGuardar.Text = "Guardar"
         Me.BtnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -200,10 +191,9 @@ Partial Class InterfazCargo
         '
         Me.Panel1.Controls.Add(Me.BtnCerrar)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 534)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel1.Location = New System.Drawing.Point(0, 434)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1352, 43)
+        Me.Panel1.Size = New System.Drawing.Size(1014, 35)
         Me.Panel1.TabIndex = 11
         '
         'BtnCerrar
@@ -213,10 +203,9 @@ Partial Class InterfazCargo
         Me.BtnCerrar.FlatAppearance.BorderSize = 0
         Me.BtnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red
         Me.BtnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCerrar.Location = New System.Drawing.Point(4, 0)
-        Me.BtnCerrar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnCerrar.Location = New System.Drawing.Point(3, 0)
         Me.BtnCerrar.Name = "BtnCerrar"
-        Me.BtnCerrar.Size = New System.Drawing.Size(47, 43)
+        Me.BtnCerrar.Size = New System.Drawing.Size(35, 35)
         Me.BtnCerrar.TabIndex = 1
         Me.BtnCerrar.UseVisualStyleBackColor = True
         '
@@ -226,20 +215,18 @@ Partial Class InterfazCargo
         Me.Panel3.Controls.Add(Me.PbxLogo)
         Me.Panel3.Controls.Add(Me.LsvCargo)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(0, 265)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel3.Location = New System.Drawing.Point(0, 215)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1352, 269)
+        Me.Panel3.Size = New System.Drawing.Size(1014, 219)
         Me.Panel3.TabIndex = 12
         '
         'ChkVer
         '
         Me.ChkVer.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.ChkVer.AutoSize = True
-        Me.ChkVer.Location = New System.Drawing.Point(1004, 16)
-        Me.ChkVer.Margin = New System.Windows.Forms.Padding(4)
+        Me.ChkVer.Location = New System.Drawing.Point(753, 13)
         Me.ChkVer.Name = "ChkVer"
-        Me.ChkVer.Size = New System.Drawing.Size(93, 21)
+        Me.ChkVer.Size = New System.Drawing.Size(73, 17)
         Me.ChkVer.TabIndex = 3
         Me.ChkVer.Text = "Ver Datos"
         Me.ChkVer.UseVisualStyleBackColor = True
@@ -249,10 +236,9 @@ Partial Class InterfazCargo
         Me.PbxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.PbxLogo.BackgroundImage = Global.Coexmar.My.Resources.Resources.CoexmarLogoMod
         Me.PbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PbxLogo.Location = New System.Drawing.Point(497, 57)
-        Me.PbxLogo.Margin = New System.Windows.Forms.Padding(4)
+        Me.PbxLogo.Location = New System.Drawing.Point(373, 46)
         Me.PbxLogo.Name = "PbxLogo"
-        Me.PbxLogo.Size = New System.Drawing.Size(477, 282)
+        Me.PbxLogo.Size = New System.Drawing.Size(358, 229)
         Me.PbxLogo.TabIndex = 2
         Me.PbxLogo.TabStop = False
         '
@@ -262,10 +248,9 @@ Partial Class InterfazCargo
         Me.LsvCargo.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ChIdCargo, Me.ChCargo})
         Me.LsvCargo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LsvCargo.GridLines = True
-        Me.LsvCargo.Location = New System.Drawing.Point(575, 1)
-        Me.LsvCargo.Margin = New System.Windows.Forms.Padding(4)
+        Me.LsvCargo.Location = New System.Drawing.Point(431, 1)
         Me.LsvCargo.Name = "LsvCargo"
-        Me.LsvCargo.Size = New System.Drawing.Size(328, 268)
+        Me.LsvCargo.Size = New System.Drawing.Size(247, 218)
         Me.LsvCargo.TabIndex = 0
         Me.LsvCargo.UseCompatibleStateImageBehavior = False
         Me.LsvCargo.View = System.Windows.Forms.View.Details
@@ -286,13 +271,14 @@ Partial Class InterfazCargo
         '
         'InterfazCargo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1352, 577)
+        Me.ClientSize = New System.Drawing.Size(1014, 469)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "InterfazCargo"
         Me.Text = "InterfazCargo"
         Me.GroupBox1.ResumeLayout(False)

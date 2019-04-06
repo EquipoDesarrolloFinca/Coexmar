@@ -24,10 +24,10 @@ Partial Class InterfazPersonal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CboCargo = New System.Windows.Forms.ComboBox()
+        Me.CboSexo = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TxtSexo = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TxtCargo = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TxtEmail = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -41,7 +41,6 @@ Partial Class InterfazPersonal
         Me.BtnGuardar = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TxtNumIdentidad = New System.Windows.Forms.TextBox()
         Me.TxtNombre = New System.Windows.Forms.TextBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -57,20 +56,26 @@ Partial Class InterfazPersonal
         Me.ChCargo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChSexo = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.EpMensaje = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CmsMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TxtIdentidad = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.PIzquierdo.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EpMensaje, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CmsMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TxtIdentidad)
+        Me.GroupBox1.Controls.Add(Me.CboCargo)
+        Me.GroupBox1.Controls.Add(Me.CboSexo)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.TxtSexo)
         Me.GroupBox1.Controls.Add(Me.Label6)
-        Me.GroupBox1.Controls.Add(Me.TxtCargo)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.TxtEmail)
         Me.GroupBox1.Controls.Add(Me.Label4)
@@ -80,7 +85,6 @@ Partial Class InterfazPersonal
         Me.GroupBox1.Controls.Add(Me.PIzquierdo)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.TxtNumIdentidad)
         Me.GroupBox1.Controls.Add(Me.TxtNombre)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -92,28 +96,33 @@ Partial Class InterfazPersonal
         Me.GroupBox1.TabIndex = 9
         Me.GroupBox1.TabStop = False
         '
+        'CboCargo
+        '
+        Me.CboCargo.FormattingEnabled = True
+        Me.CboCargo.Location = New System.Drawing.Point(451, 102)
+        Me.CboCargo.Name = "CboCargo"
+        Me.CboCargo.Size = New System.Drawing.Size(121, 21)
+        Me.CboCargo.TabIndex = 19
+        '
+        'CboSexo
+        '
+        Me.CboSexo.FormattingEnabled = True
+        Me.CboSexo.Location = New System.Drawing.Point(667, 29)
+        Me.CboSexo.Name = "CboSexo"
+        Me.CboSexo.Size = New System.Drawing.Size(121, 21)
+        Me.CboSexo.TabIndex = 18
+        '
         'Label7
         '
         Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(623, 27)
+        Me.Label7.Location = New System.Drawing.Point(609, 28)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(64, 22)
         Me.Label7.TabIndex = 17
         Me.Label7.Text = "Sexo:"
-        '
-        'TxtSexo
-        '
-        Me.TxtSexo.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TxtSexo.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtSexo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSexo.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSexo.Location = New System.Drawing.Point(693, 25)
-        Me.TxtSexo.Name = "TxtSexo"
-        Me.TxtSexo.Size = New System.Drawing.Size(95, 29)
-        Me.TxtSexo.TabIndex = 16
         '
         'Label6
         '
@@ -126,17 +135,6 @@ Partial Class InterfazPersonal
         Me.Label6.Size = New System.Drawing.Size(74, 22)
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Cargo:"
-        '
-        'TxtCargo
-        '
-        Me.TxtCargo.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TxtCargo.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtCargo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtCargo.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCargo.Location = New System.Drawing.Point(451, 98)
-        Me.TxtCargo.Name = "TxtCargo"
-        Me.TxtCargo.Size = New System.Drawing.Size(163, 29)
-        Me.TxtCargo.TabIndex = 14
         '
         'Label5
         '
@@ -167,7 +165,7 @@ Partial Class InterfazPersonal
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(347, 29)
+        Me.Label4.Location = New System.Drawing.Point(340, 28)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(98, 22)
         Me.Label4.TabIndex = 11
@@ -179,7 +177,7 @@ Partial Class InterfazPersonal
         Me.TxtTelefono.BackColor = System.Drawing.Color.WhiteSmoke
         Me.TxtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtTelefono.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTelefono.Location = New System.Drawing.Point(451, 25)
+        Me.TxtTelefono.Location = New System.Drawing.Point(444, 25)
         Me.TxtTelefono.Name = "TxtTelefono"
         Me.TxtTelefono.Size = New System.Drawing.Size(163, 29)
         Me.TxtTelefono.TabIndex = 10
@@ -305,17 +303,6 @@ Partial Class InterfazPersonal
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Nombre:"
         '
-        'TxtNumIdentidad
-        '
-        Me.TxtNumIdentidad.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.TxtNumIdentidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtNumIdentidad.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNumIdentidad.Location = New System.Drawing.Point(189, 25)
-        Me.TxtNumIdentidad.Name = "TxtNumIdentidad"
-        Me.TxtNumIdentidad.ReadOnly = True
-        Me.TxtNumIdentidad.Size = New System.Drawing.Size(119, 29)
-        Me.TxtNumIdentidad.TabIndex = 3
-        '
         'TxtNombre
         '
         Me.TxtNombre.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -388,6 +375,7 @@ Partial Class InterfazPersonal
         Me.LsvPersonal.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.LsvPersonal.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ChNumIdentidad, Me.ChNombre, Me.ChApellidos, Me.ChTelefono, Me.ChEmail, Me.ChCargo, Me.ChSexo})
         Me.LsvPersonal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LsvPersonal.FullRowSelect = True
         Me.LsvPersonal.GridLines = True
         Me.LsvPersonal.Location = New System.Drawing.Point(3, 0)
         Me.LsvPersonal.Name = "LsvPersonal"
@@ -435,11 +423,41 @@ Partial Class InterfazPersonal
         '
         Me.EpMensaje.ContainerControl = Me
         '
+        'CmsMenu
+        '
+        Me.CmsMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditarToolStripMenuItem, Me.EliminarToolStripMenuItem})
+        Me.CmsMenu.Name = "CmsMenu"
+        Me.CmsMenu.Size = New System.Drawing.Size(118, 48)
+        '
+        'EditarToolStripMenuItem
+        '
+        Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EditarToolStripMenuItem.Text = "Editar"
+        '
+        'EliminarToolStripMenuItem
+        '
+        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
+        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EliminarToolStripMenuItem.Text = "Eliminar"
+        '
+        'TxtIdentidad
+        '
+        Me.TxtIdentidad.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.TxtIdentidad.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.TxtIdentidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtIdentidad.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtIdentidad.Location = New System.Drawing.Point(171, 23)
+        Me.TxtIdentidad.Name = "TxtIdentidad"
+        Me.TxtIdentidad.Size = New System.Drawing.Size(163, 29)
+        Me.TxtIdentidad.TabIndex = 20
+        '
         'InterfazPersonal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 527)
+        Me.ContextMenuStrip = Me.CmsMenu
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "InterfazPersonal"
@@ -452,6 +470,7 @@ Partial Class InterfazPersonal
         Me.Panel1.ResumeLayout(False)
         CType(Me.PbxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EpMensaje, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CmsMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -464,7 +483,6 @@ Partial Class InterfazPersonal
     Friend WithEvents BtnGuardar As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents TxtNumIdentidad As TextBox
     Friend WithEvents TxtNombre As TextBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents ChkVer As CheckBox
@@ -474,9 +492,7 @@ Partial Class InterfazPersonal
     Friend WithEvents ChNombre As ColumnHeader
     Friend WithEvents EpMensaje As ErrorProvider
     Friend WithEvents Label7 As Label
-    Friend WithEvents TxtSexo As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TxtCargo As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TxtEmail As TextBox
     Friend WithEvents Label4 As Label
@@ -490,4 +506,10 @@ Partial Class InterfazPersonal
     Friend WithEvents ChEmail As ColumnHeader
     Friend WithEvents ChCargo As ColumnHeader
     Friend WithEvents ChSexo As ColumnHeader
+    Friend WithEvents CboCargo As ComboBox
+    Friend WithEvents CboSexo As ComboBox
+    Friend WithEvents CmsMenu As ContextMenuStrip
+    Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EliminarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TxtIdentidad As TextBox
 End Class

@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Coexmar.FrmConductor
+            Me.MainForm = Global.Coexmar.InterfazPersonal
         End Sub
     End Class
 End Namespace
