@@ -104,12 +104,6 @@
     <Compile Include="Forms\InterfazPersonal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InterfazProducto.Designer.vb">
-      <DependentUpon>InterfazProducto.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InterfazProducto.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\InterfazProveedor.Designer.vb">
       <DependentUpon>InterfazProveedor.vb</DependentUpon>
     </Compile>
@@ -126,12 +120,6 @@
       <DependentUpon>FrmCamion.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmCamion.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InterfazTipoCombustible.Designer.vb">
-      <DependentUpon>InterfazTipoCombustible.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InterfazTipoCombustible.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -166,9 +154,6 @@
     <EmbeddedResource Include="Forms\InterfazPersonal.resx">
       <DependentUpon>InterfazPersonal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazProducto.resx">
-      <DependentUpon>InterfazProducto.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InterfazProveedor.resx">
       <DependentUpon>InterfazProveedor.vb</DependentUpon>
     </EmbeddedResource>
@@ -177,9 +162,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCamion.resx">
       <DependentUpon>FrmCamion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazTipoCombustible.resx">
-      <DependentUpon>InterfazTipoCombustible.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

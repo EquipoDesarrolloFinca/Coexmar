@@ -1,34 +1,148 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class FrmBinesHielo
-    Dim EstadoModificado As Boolean
-    Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
-        ' InterfazPrincipal.PbxLogo.Visible = True
-        ' InterfazPrincipal.LblTitulo.Text = "COEXMAR-FINCA"
-        Close()
-    End Sub
 
-    Private Sub ChkVer_CheckedChanged(sender As Object, e As EventArgs) Handles ChkVer.CheckedChanged
-        If ChkVer.CheckState = CheckState.Checked Then
-            LsvBinesHielo.Visible = True
-            PbxLogo.Visible = False
-            MostrarTodo()
-        Else
-            PbxLogo.Visible = True
-            LsvBinesHielo.Visible = False
-        End If
-    End Sub
+
+
+
 
     Private Sub InterfazBinesHielo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        EstadoModificado = False
-
+        MostrarTodo()
+        DtpFecha.Text = ""
+        DtpHora.Text = ""
         TxtIdBin.ReadOnly = True
-        TxtPlaca.ReadOnly = True
+        CboIdentidadConductor.Text = ""
         TxtCantidad.ReadOnly = True
-        TxtProveedor.ReadOnly = True
-        TxtUsuario.ReadOnly = True
+        CboProveedor.Text = ""
+        CboUsuario.Text = ""
+        CboPlacaCamion.Text = ""
+
         PbxLogo.Visible = True
-        LsvBinesHielo.Visible = False
+
+    End Sub
+
+    Private Sub LLenarCboIdentidadConductor()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+        Using CMd As New SqlCommand
+            Cn.Open()
+
+            Try
+                With CMd
+                    .CommandText = "Sp_MostrarIdentidadConductor"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+
+                End With
+
+                Dim Da As New SqlDataAdapter(CMd)
+
+                Dim Ds As New DataSet
+
+                Da.Fill(Ds, "Conductor")
+                CboIdentidadConductor.DataSource = Ds.Tables(0)
+                CboIdentidadConductor.DisplayMember = Ds.Tables(0).Columns("NumIdentidadConductor").ToString
+                CboIdentidadConductor.ValueMember = Ds.Tables(0).Columns("NumIdentidadConductor").ToString
+            Catch ex As Exception
+                MessageBox.Show("Error al consultar los datos." + ex.Message, "CoexMarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cn.Close()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LLenarCboProveedor()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+        Using CMd As New SqlCommand
+            Cn.Open()
+
+            Try
+                With CMd
+                    .CommandText = "Sp_MostrarProveedor"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+
+                End With
+
+                Dim Da As New SqlDataAdapter(CMd)
+
+                Dim Ds As New DataSet
+
+                Da.Fill(Ds, "Proveedor")
+                CboProveedor.DataSource = Ds.Tables(0)
+                CboProveedor.DisplayMember = Ds.Tables(0).Columns("NombreProveedor").ToString
+                CboProveedor.ValueMember = Ds.Tables(0).Columns("IdProveedor").ToString
+            Catch ex As Exception
+                MessageBox.Show("Error al consultar los datos." + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cn.Close()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LLenarCboPlacaCamion()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+        Using CMd As New SqlCommand
+            Cn.Open()
+
+            Try
+                With CMd
+                    .CommandText = "Sp_MostrarPlaca"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+
+                End With
+
+                Dim Da As New SqlDataAdapter(CMd)
+
+                Dim Ds As New DataSet
+
+                Da.Fill(Ds, "Camion")
+                CboPlacaCamion.DataSource = Ds.Tables(0)
+                CboPlacaCamion.DisplayMember = Ds.Tables(0).Columns("NumPlaca").ToString
+                CboPlacaCamion.ValueMember = Ds.Tables(0).Columns("NumPlaca").ToString
+            Catch ex As Exception
+                MessageBox.Show("Error al consultar los datos." + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cn.Close()
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LLenarCboUsuario()
+        If Cn.State = ConnectionState.Open Then
+            Cn.Close()
+        End If
+        Using CMd As New SqlCommand
+            Cn.Open()
+
+            Try
+                With CMd
+                    .CommandText = "Sp_MostrarUsuarioCbo"
+                    .CommandType = CommandType.StoredProcedure
+                    .Connection = Cn
+
+                End With
+
+                Dim Da As New SqlDataAdapter(CMd)
+
+                Dim Ds As New DataSet
+
+                Da.Fill(Ds, "Usuario")
+                CboUsuario.DataSource = Ds.Tables(0)
+                CboUsuario.DisplayMember = Ds.Tables(0).Columns("NombreUsuario").ToString
+                CboUsuario.ValueMember = Ds.Tables(0).Columns("IdUsuario").ToString
+            Catch ex As Exception
+                MessageBox.Show("Error al consultar los datos." + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                Cn.Close()
+            End Try
+        End Using
     End Sub
     ' Almacena datos en la tabla Alimento
     Private Sub GuardarBinHielo()
@@ -45,12 +159,12 @@ Public Class FrmBinesHielo
                     .Connection = Cn
 
                     .Parameters.Add("@Fecha", SqlDbType.Date).Value = DtpFecha.Text
-                    .Parameters.Add("@NumIdentidadConductor", SqlDbType.VarChar, 15).Value = ComboBox1.SelectedItem
-                    .Parameters.Add("@NumPlaca", SqlDbType.Char, 8).Value = TxtPlaca.Text
-                    .Parameters.Add("@Cantidad", SqlDbType.Int, 4).Value = TxtCantidad.Text
+                    .Parameters.Add("@NumIdentidadConductor", SqlDbType.VarChar, 15).Value = CboIdentidadConductor.SelectedValue
+                    .Parameters.Add("@NumPlaca", SqlDbType.Char, 8).Value = CboPlacaCamion.SelectedValue
+                    .Parameters.Add("@Cantidad", SqlDbType.Int).Value = CInt(TxtCantidad.Text)
                     .Parameters.Add("@HoraLlegada", SqlDbType.Time).Value = DtpHora.Text
-                    .Parameters.Add("@IdProveedor", SqlDbType.Int, 4).Value = TxtProveedor.Text
-                    .Parameters.Add("@Idusiario", SqlDbType.Int, 4).Value = TxtUsuario.Text
+                    .Parameters.Add("@IdProveedor", SqlDbType.Int).Value = CInt(CboProveedor.SelectedValue)
+                    .Parameters.Add("@IdUsuario", SqlDbType.Int).Value = CInt(CboUsuario.SelectedValue)
 
                     .ExecuteNonQuery()
 
@@ -60,7 +174,7 @@ Public Class FrmBinesHielo
             End Using
 
         Catch ex As Exception
-            MessageBox.Show("Error al insertar Bin", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al insertar Bin" + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
@@ -78,14 +192,14 @@ Public Class FrmBinesHielo
                     .CommandText = "Sp_ModificarBinesHielo"
                     .CommandType = CommandType.StoredProcedure
                     .Connection = Cn
-
+                    .Parameters.Add("@IdBinesHielo", SqlDbType.Int).Value = CInt(TxtIdBin.Text)
                     .Parameters.Add("@Fecha", SqlDbType.Date).Value = DtpFecha.Text
-                    .Parameters.Add("@NumIdentidadConductor", SqlDbType.VarChar, 15).Value = ComboBox1.SelectedItem
-                    .Parameters.Add("@NumPlaca", SqlDbType.Char, 8).Value = TxtPlaca.Text
-                    .Parameters.Add("@Cantidad", SqlDbType.Int, 4).Value = TxtCantidad.Text
+                    .Parameters.Add("@NumIdentidadConductor", SqlDbType.VarChar, 15).Value = CboIdentidadConductor.SelectedValue
+                    .Parameters.Add("@NumPlaca", SqlDbType.Char, 8).Value = CboPlacaCamion.SelectedValue
+                    .Parameters.Add("@Cantidad", SqlDbType.Int, 4).Value = CInt(TxtCantidad.Text)
                     .Parameters.Add("@HoraLlegada", SqlDbType.Time).Value = DtpHora.Text
-                    .Parameters.Add("@IdProveedor", SqlDbType.Int, 4).Value = TxtProveedor.Text
-                    .Parameters.Add("@Idusiario", SqlDbType.Int, 4).Value = TxtUsuario.Text
+                    .Parameters.Add("@IdProveedor", SqlDbType.Int, 4).Value = CInt(CboProveedor.SelectedValue)
+                    .Parameters.Add("@Idusuario", SqlDbType.Int, 4).Value = CInt(CboUsuario.SelectedValue)
 
                     .ExecuteNonQuery()
 
@@ -95,25 +209,13 @@ Public Class FrmBinesHielo
             End Using
 
         Catch ex As Exception
-            MessageBox.Show("Error al modificar Bin", "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al modificar Bin" + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
     End Sub
 
-    Private Sub BtnNuevo_Click(sender As Object, e As EventArgs) Handles BtnNuevo.Click
 
-        NuevoBinHielo()
-
-        TxtIdBin.ReadOnly = False
-        TxtPlaca.ReadOnly = False
-        TxtCantidad.ReadOnly = False
-        TxtProveedor.ReadOnly = False
-        TxtUsuario.ReadOnly = False
-        HabilitarBotones(False, True, False, True)
-        TxtCantidad.Focus()
-
-    End Sub
 
     Private Sub HabilitarBotones(ByVal Nuevo As Boolean, ByVal Guardar As Boolean, ByVal Modificar As Boolean, ByVal Cancelar As Boolean)
         BtnNuevo.Enabled = Nuevo
@@ -125,21 +227,21 @@ Public Class FrmBinesHielo
     Private Function ValidarTextBox()
         Dim Estado As Boolean
 
-        If TxtPlaca.Text = Nothing And TxtCantidad.Text = Nothing And TxtProveedor.Text = Nothing And TxtUsuario.Text = Nothing Then
+        If CboPlacaCamion.Text = Nothing And TxtCantidad.Text = Nothing And CboProveedor.Text = Nothing And CboUsuario.Text = Nothing Then
             EpMensaje.SetError(TxtCantidad, "Tiene que ingresar los datos")
             TxtCantidad.Focus()
 
-            TxtPlaca.BackColor = Color.LightBlue
+            CboPlacaCamion.BackColor = Color.LightBlue
             TxtCantidad.BackColor = Color.LightBlue
-            TxtProveedor.BackColor = Color.LightBlue
-            TxtUsuario.BackColor = Color.LightBlue
+            CboProveedor.BackColor = Color.LightBlue
+            CboUsuario.BackColor = Color.LightBlue
 
             Estado = False
 
-        ElseIf TxtPlaca.Text = Nothing Then
-            EpMensaje.SetError(TxtPlaca, "Tiene que ingresar el número de placa")
-            TxtPlaca.Focus()
-            TxtPlaca.BackColor = Color.LightBlue
+        ElseIf CboPlacaCamion.Text = Nothing Then
+            EpMensaje.SetError(CboPlacaCamion, "Tiene que seleccionar el número de placa")
+            CboPlacaCamion.Focus()
+            CboPlacaCamion.BackColor = Color.LightBlue
 
             Estado = False
 
@@ -150,27 +252,27 @@ Public Class FrmBinesHielo
 
             Estado = False
 
-        ElseIf TxtProveedor.Text = Nothing Then
-            EpMensaje.SetError(TxtProveedor, "Tiene que ingresar el el proveedor")
-            TxtProveedor.Focus()
-            TxtProveedor.BackColor = Color.LightBlue
+        ElseIf CboProveedor.Text = Nothing Then
+            EpMensaje.SetError(CboProveedor, "Tiene que seleccionar el proveedor")
+            CboProveedor.Focus()
+            CboProveedor.BackColor = Color.LightBlue
 
             Estado = False
 
-        ElseIf TxtUsuario.Text = Nothing Then
-            EpMensaje.SetError(TxtUsuario, "Tiene que ingresar el código del usuario")
-            TxtUsuario.Focus()
-            TxtUsuario.BackColor = Color.LightBlue
+        ElseIf CboUsuario.Text = Nothing Then
+            EpMensaje.SetError(CboUsuario, "Tiene que seleccionar el nombre del usuario")
+            CboUsuario.Focus()
+            CboUsuario.BackColor = Color.LightBlue
 
             Estado = False
 
         Else
             Estado = True
 
-            EpMensaje.SetError(TxtPlaca, "")
+            EpMensaje.SetError(CboPlacaCamion, "")
             EpMensaje.SetError(TxtCantidad, "")
-            EpMensaje.SetError(TxtProveedor, "")
-            EpMensaje.SetError(TxtUsuario, "")
+            EpMensaje.SetError(CboProveedor, "")
+            EpMensaje.SetError(CboUsuario, "")
 
         End If
 
@@ -181,21 +283,22 @@ Public Class FrmBinesHielo
     Private Function ValidarTextBoxModificar()
         Dim Estado As Boolean
 
-        If TxtPlaca.Text = Nothing And TxtCantidad.Text = Nothing And TxtProveedor.Text = Nothing And TxtUsuario.Text = Nothing Then
+        If CboPlacaCamion.Text = Nothing And TxtCantidad.Text = Nothing And CboProveedor.Text = Nothing And CboUsuario.Text = Nothing And CboIdentidadConductor.Text = Nothing Then
             EpMensaje.SetError(TxtCantidad, "Tiene que ingresar los datos")
             TxtCantidad.Focus()
 
-            TxtPlaca.BackColor = Color.LightBlue
+            CboPlacaCamion.BackColor = Color.LightBlue
             TxtCantidad.BackColor = Color.LightBlue
-            TxtProveedor.BackColor = Color.LightBlue
-            TxtUsuario.BackColor = Color.LightBlue
+            CboProveedor.BackColor = Color.LightBlue
+            CboUsuario.BackColor = Color.LightBlue
 
             Estado = False
 
-        ElseIf TxtPlaca.Text = Nothing Then
-            EpMensaje.SetError(TxtPlaca, "Tiene que ingresar el número de placa")
-            TxtPlaca.Focus()
-            TxtPlaca.BackColor = Color.LightBlue
+
+        ElseIf CboPlacaCamion.Text = Nothing Then
+            EpMensaje.SetError(CboPlacaCamion, "Tiene que seleccionar el número de placa")
+            CboPlacaCamion.Focus()
+            CboPlacaCamion.BackColor = Color.LightBlue
 
             Estado = False
 
@@ -205,67 +308,40 @@ Public Class FrmBinesHielo
             TxtCantidad.BackColor = Color.LightBlue
 
             Estado = False
+        ElseIf CboIdentidadConductor.Text = Nothing Then
+            EpMensaje.SetError(CboIdentidadConductor, "Tiene que seleccionar la identidad del conductor")
+            CboIdentidadConductor.Focus()
+            CboIdentidadConductor.BackColor = Color.LightBlue
 
-        ElseIf TxtProveedor.Text = Nothing Then
-            EpMensaje.SetError(TxtProveedor, "Tiene que ingresar el el proveedor")
-            TxtProveedor.Focus()
-            TxtProveedor.BackColor = Color.LightBlue
+            Estado = False
+        ElseIf CboProveedor.Text = Nothing Then
+            EpMensaje.SetError(CboProveedor, "Tiene que seleccionar el proveedor")
+            CboProveedor.Focus()
+            CboProveedor.BackColor = Color.LightBlue
 
             Estado = False
 
-        ElseIf TxtUsuario.Text = Nothing Then
-            EpMensaje.SetError(TxtUsuario, "Tiene que ingresar el código del usuario")
-            TxtUsuario.Focus()
-            TxtUsuario.BackColor = Color.LightBlue
+        ElseIf CboUsuario.Text = Nothing Then
+            EpMensaje.SetError(CboUsuario, "Tiene que seleccionar el nombre del usuario")
+            CboUsuario.Focus()
+            CboUsuario.BackColor = Color.LightBlue
 
             Estado = False
+
         Else
             Estado = True
 
-            EpMensaje.SetError(TxtIdBin, "")
-            EpMensaje.SetError(TxtPlaca, "")
+            EpMensaje.SetError(CboPlacaCamion, "")
             EpMensaje.SetError(TxtCantidad, "")
-            EpMensaje.SetError(TxtProveedor, "")
-            EpMensaje.SetError(TxtUsuario, "")
-
+            EpMensaje.SetError(CboProveedor, "")
+            EpMensaje.SetError(CboUsuario, "")
+            EpMensaje.SetError(CboIdentidadConductor, "")
         End If
+
         Return Estado
+
     End Function
 
-    Private Sub BtnGuardar_Click(sender As Object, e As EventArgs) Handles BtnGuardar.Click
-
-        If EstadoModificado = True Then
-            If ValidarTextBoxModificar() = True Then
-                HabilitarBotones(True, False, True, False)
-                TxtIdBin.ReadOnly = True
-
-                TxtPlaca.ReadOnly = True
-                TxtCantidad.ReadOnly = True
-                TxtProveedor.ReadOnly = True
-                TxtUsuario.ReadOnly = True
-                ModificarBinHielo()
-                MostrarTodo()
-                Limpiar()
-
-                EstadoModificado = False
-
-            End If
-        Else
-            If ValidarTextBox() = True Then
-                HabilitarBotones(True, False, True, False)
-
-                TxtPlaca.ReadOnly = True
-                TxtCantidad.ReadOnly = True
-                TxtProveedor.ReadOnly = True
-                TxtUsuario.ReadOnly = True
-
-                GuardarBinHielo()
-                MostrarTodo()
-                Limpiar()
-            End If
-        End If
-
-    End Sub
 
     Private Sub MostrarTodo()
         If Cn.State = ConnectionState.Open Then
@@ -312,10 +388,10 @@ Public Class FrmBinesHielo
     Private Sub Limpiar()
         TxtIdBin.Text = Nothing
 
-        TxtPlaca.Text = Nothing
+        CboUsuario.Text = ""
         TxtCantidad.Text = Nothing
-        TxtProveedor.Text = Nothing
-        TxtUsuario.Text = Nothing
+        CboProveedor.Text = ""
+        CboUsuario.Text = ""
         DtpFecha.Text = Nothing
         DtpHora.Text = Nothing
 
@@ -323,40 +399,21 @@ Public Class FrmBinesHielo
 
 
 
-    Private Sub TxtIdBin_TextChanged(sender As Object, e As EventArgs) Handles TxtIdBin.TextChanged
+    Private Sub TxtIdBin_TextChanged(sender As Object, e As EventArgs)
         If TxtIdBin.Text <> Nothing Then
             EpMensaje.SetError(TxtIdBin, "")
             TxtIdBin.BackColor = Color.White
         End If
     End Sub
 
-    Private Sub TxtPlaca_TextChanged(sender As Object, e As EventArgs) Handles TxtPlaca.TextChanged
-        If TxtPlaca.Text <> Nothing Then
-            EpMensaje.SetError(TxtPlaca, "")
-            TxtPlaca.BackColor = Color.White
-        End If
-    End Sub
 
-    Private Sub TxtCantidad_TextChanged(sender As Object, e As EventArgs) Handles TxtCantidad.TextChanged
+    Private Sub TxtCantidad_TextChanged(sender As Object, e As EventArgs)
         If TxtCantidad.Text <> Nothing Then
             EpMensaje.SetError(TxtCantidad, "")
             TxtCantidad.BackColor = Color.White
         End If
     End Sub
 
-    Private Sub TxtProveedor_TextChanged(sender As Object, e As EventArgs) Handles TxtProveedor.TextChanged
-        If TxtProveedor.Text <> Nothing Then
-            EpMensaje.SetError(TxtProveedor, "")
-            TxtProveedor.BackColor = Color.White
-        End If
-    End Sub
-
-    Private Sub TxtUsuario_TextChanged(sender As Object, e As EventArgs) Handles TxtUsuario.TextChanged
-        If TxtUsuario.Text <> Nothing Then
-            EpMensaje.SetError(TxtUsuario, "")
-            TxtUsuario.BackColor = Color.White
-        End If
-    End Sub
 
     Private Sub NuevoBinHielo()
         If Cn.State = ConnectionState.Open Then
@@ -372,71 +429,43 @@ Public Class FrmBinesHielo
             ListarBinesHieloR = ListaBinHielo.ExecuteReader()
 
             If ListarBinesHieloR.Read = True Then
-                If ListarBinesHieloR("IdBinesHielo") Is "" Then
+                If ListarBinesHieloR("IdTabla") Is "" Then
                     TxtIdBin.Text = 1
                 Else
-                    TxtIdBin.Text = ListarBinesHieloR("IdBinesHielo").ToString + 1
+                    TxtIdBin.Text = ListarBinesHieloR("IdTabla").ToString + 1
                 End If
             End If
 
         Catch ex As Exception
-            MessageBox.Show("Error al consultar los datos" + ex.Message, "CientificaMusic", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al consultar los datos" + ex.Message, "CoexmarSystem", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             Cn.Close()
         End Try
     End Sub
 
-    Private Sub BtnCancelar_Click(sender As Object, e As EventArgs) Handles BtnCancelar.Click
-
-        HabilitarBotones(True, False, True, False)
-
-        TxtIdBin.ReadOnly = True
-        TxtPlaca.ReadOnly = True
-        TxtCantidad.ReadOnly = True
-        TxtProveedor.ReadOnly = True
-        TxtUsuario.ReadOnly = True
-
-        TxtIdBin.BackColor = Color.WhiteSmoke
-
-        TxtPlaca.BackColor = Color.WhiteSmoke
-        TxtCantidad.BackColor = Color.WhiteSmoke
-        TxtProveedor.BackColor = Color.WhiteSmoke
-        TxtUsuario.BackColor = Color.WhiteSmoke
-
-
-        TxtIdBin.Text = ""
-        TxtPlaca.Text = ""
-        TxtCantidad.Text = ""
-        TxtProveedor.Text = ""
-        TxtUsuario.Text = ""
-
-    End Sub
-
-    Private Sub BtnModificar_Click(sender As Object, e As EventArgs) Handles BtnModificar.Click
-        EstadoModificado = True
-        HabilitarBotones(False, True, False, True)
-
-        TxtIdBin.ReadOnly = False
-        TxtPlaca.ReadOnly = False
-        TxtCantidad.ReadOnly = False
-        TxtProveedor.ReadOnly = False
-        TxtUsuario.ReadOnly = False
-
-        TxtIdBin.Focus()
-        LsvBinesHielo.Visible = True
-        PbxLogo.Visible = False
-        ChkVer.Checked = True
-    End Sub
 
     Private Sub EditarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditarToolStripMenuItem.Click
         HabilitarBotones(False, False, True, True)
         TxtIdBin.ReadOnly = True
+        LLenarCboIdentidadConductor()
+        LLenarCboPlacaCamion()
+        LLenarCboProveedor()
+        LLenarCboUsuario()
 
-        TxtPlaca.ReadOnly = False
-        TxtProveedor.ReadOnly = False
-        TxtUsuario.ReadOnly = False
+        CboPlacaCamion.Text = ""
+        CboProveedor.Text = ""
+        CboUsuario.Text = ""
         TxtIdBin.Text = LsvBinesHielo.FocusedItem.SubItems(0).Text
-        ComboBox1.Text = LsvBinesHielo.FocusedItem.SubItems(1).Text
+        DtpFecha.MaxDate = LsvBinesHielo.FocusedItem.SubItems(1).Text
+        CboIdentidadConductor.Text = LsvBinesHielo.FocusedItem.SubItems(2).Text
+        CboPlacaCamion.Text = LsvBinesHielo.FocusedItem.SubItems(3).Text
+        TxtCantidad.Text = LsvBinesHielo.FocusedItem.SubItems(4).Text
+        DtpHora.Text = LsvBinesHielo.FocusedItem.SubItems(5).Text
+        CboProveedor.Text = LsvBinesHielo.FocusedItem.SubItems(6).Text
+        CboUsuario.Text = LsvBinesHielo.FocusedItem.SubItems(7).Text
+        Dim tp As TabPage = TcDatos.TabPages(0)
+
+        TcDatos.SelectedTab = tp
     End Sub
 
     Private Sub EliminarBinesHielo()
@@ -473,4 +502,99 @@ Public Class FrmBinesHielo
         HabilitarBotones(True, True, True, True)
     End Sub
 
+
+
+    Private Sub CboIdentidadConductor_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If CboPlacaCamion.Text <> Nothing Then
+            EpMensaje.SetError(CboPlacaCamion, "")
+            CboPlacaCamion.BackColor = Color.White
+        End If
+    End Sub
+
+    Private Sub CboProveedor_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If CboProveedor.Text <> Nothing Then
+            EpMensaje.SetError(CboProveedor, "")
+            CboProveedor.BackColor = Color.White
+        End If
+    End Sub
+
+    Private Sub CboPlacaCamion_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If CboUsuario.Text <> Nothing Then
+            EpMensaje.SetError(CboUsuario, "")
+            CboUsuario.BackColor = Color.White
+        End If
+    End Sub
+
+    Private Sub BtnCerrar_Click_1(sender As Object, e As EventArgs) Handles BtnCerrar.Click
+        ' InterfazPrincipal.PbxLogo.Visible = True
+        ' InterfazPrincipal.LblTitulo.Text = "COEXMAR-FINCA"
+        Close()
+    End Sub
+
+    Private Sub BtnNuevo_Click_1(sender As Object, e As EventArgs) Handles BtnNuevo.Click
+        HabilitarBotones(False, True, False, True)
+        TxtIdBin.ReadOnly = False
+        TxtCantidad.ReadOnly = False
+        TxtCantidad.Focus()
+        NuevoBinHielo()
+        LLenarCboIdentidadConductor()
+        LLenarCboProveedor()
+        LLenarCboUsuario()
+        LLenarCboPlacaCamion()
+    End Sub
+
+    Private Sub BtnGuardar_Click_1(sender As Object, e As EventArgs) Handles BtnGuardar.Click
+
+        If ValidarTextBox() = True Then
+            HabilitarBotones(True, False, True, False)
+
+            CboPlacaCamion.Text = ""
+            TxtCantidad.ReadOnly = True
+            CboProveedor.Text = ""
+            CboUsuario.Text = ""
+
+            GuardarBinHielo()
+            MostrarTodo()
+            Limpiar()
+        End If
+    End Sub
+
+    Private Sub BtnModificar_Click_1(sender As Object, e As EventArgs) Handles BtnModificar.Click
+        If ValidarTextBoxModificar() = True Then
+            HabilitarBotones(True, False, True, False)
+            TxtIdBin.ReadOnly = True
+            CboIdentidadConductor.Text = ""
+            CboPlacaCamion.Text = ""
+            TxtCantidad.ReadOnly = True
+            CboProveedor.Text = ""
+            CboUsuario.Text = ""
+            ModificarBinHielo()
+            MostrarTodo()
+            Limpiar()
+        End If
+
+    End Sub
+
+    Private Sub BtnCancelar_Click_1(sender As Object, e As EventArgs) Handles BtnCancelar.Click
+        HabilitarBotones(True, False, True, False)
+
+        TxtIdBin.ReadOnly = True
+        TxtIdBin.Text = ""
+        CboPlacaCamion.Text = ""
+        TxtCantidad.ReadOnly = True
+        TxtCantidad.Text = ""
+        DtpFecha.Text = ""
+        DtpHora.Text = ""
+        CboProveedor.Text = ""
+        CboUsuario.Text = ""
+        CboIdentidadConductor.Text = ""
+
+        TxtIdBin.BackColor = Color.WhiteSmoke
+
+        CboPlacaCamion.BackColor = Color.WhiteSmoke
+        TxtCantidad.BackColor = Color.WhiteSmoke
+        CboProveedor.BackColor = Color.WhiteSmoke
+        CboUsuario.BackColor = Color.WhiteSmoke
+        CboIdentidadConductor.BackColor = Color.WhiteSmoke
+    End Sub
 End Class
