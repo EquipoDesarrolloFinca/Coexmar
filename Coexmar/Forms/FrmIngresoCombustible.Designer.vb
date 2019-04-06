@@ -27,6 +27,13 @@ Partial Class FrmIngresoCombustible
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.BtnCerrar = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.CboNumeroPlaca = New System.Windows.Forms.ComboBox()
+        Me.TxtTotalGalCombustible = New System.Windows.Forms.TextBox()
+        Me.TxtCodigoIngresoCombustible = New System.Windows.Forms.TextBox()
+        Me.DtpHoraSalida = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.CboTipoCombustible = New System.Windows.Forms.ComboBox()
+        Me.DtpHoraEntrada = New System.Windows.Forms.DateTimePicker()
         Me.CboNombreConductor = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -52,13 +59,6 @@ Partial Class FrmIngresoCombustible
         Me.ChTipoCombustible = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChTotalGalCombustible = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ChHoraSalida = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.DtpHoraEntrada = New System.Windows.Forms.DateTimePicker()
-        Me.CboTipoCombustible = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DtpHoraSalida = New System.Windows.Forms.DateTimePicker()
-        Me.TxtCodigoIngresoCombustible = New System.Windows.Forms.TextBox()
-        Me.TxtTotalGalCombustible = New System.Windows.Forms.TextBox()
-        Me.CboNumeroPlaca = New System.Windows.Forms.ComboBox()
         Me.TcDatos.SuspendLayout()
         Me.TpDatos.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -78,7 +78,7 @@ Partial Class FrmIngresoCombustible
         Me.TcDatos.Name = "TcDatos"
         Me.TcDatos.SelectedIndex = 0
         Me.TcDatos.Size = New System.Drawing.Size(1044, 545)
-        Me.TcDatos.TabIndex = 11
+        Me.TcDatos.TabIndex = 12
         '
         'TpDatos
         '
@@ -143,6 +143,72 @@ Partial Class FrmIngresoCombustible
         Me.GroupBox2.Size = New System.Drawing.Size(1030, 288)
         Me.GroupBox2.TabIndex = 12
         Me.GroupBox2.TabStop = False
+        '
+        'CboNumeroPlaca
+        '
+        Me.CboNumeroPlaca.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.CboNumeroPlaca.FormattingEnabled = True
+        Me.CboNumeroPlaca.Location = New System.Drawing.Point(779, 24)
+        Me.CboNumeroPlaca.Name = "CboNumeroPlaca"
+        Me.CboNumeroPlaca.Size = New System.Drawing.Size(197, 30)
+        Me.CboNumeroPlaca.TabIndex = 32
+        '
+        'TxtTotalGalCombustible
+        '
+        Me.TxtTotalGalCombustible.Location = New System.Drawing.Point(779, 132)
+        Me.TxtTotalGalCombustible.Multiline = True
+        Me.TxtTotalGalCombustible.Name = "TxtTotalGalCombustible"
+        Me.TxtTotalGalCombustible.Size = New System.Drawing.Size(197, 30)
+        Me.TxtTotalGalCombustible.TabIndex = 31
+        '
+        'TxtCodigoIngresoCombustible
+        '
+        Me.TxtCodigoIngresoCombustible.Location = New System.Drawing.Point(319, 20)
+        Me.TxtCodigoIngresoCombustible.Multiline = True
+        Me.TxtCodigoIngresoCombustible.Name = "TxtCodigoIngresoCombustible"
+        Me.TxtCodigoIngresoCombustible.Size = New System.Drawing.Size(197, 30)
+        Me.TxtCodigoIngresoCombustible.TabIndex = 29
+        '
+        'DtpHoraSalida
+        '
+        Me.DtpHoraSalida.CalendarMonthBackground = System.Drawing.SystemColors.Control
+        Me.DtpHoraSalida.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.DtpHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DtpHoraSalida.Location = New System.Drawing.Point(779, 193)
+        Me.DtpHoraSalida.Name = "DtpHoraSalida"
+        Me.DtpHoraSalida.Size = New System.Drawing.Size(197, 29)
+        Me.DtpHoraSalida.TabIndex = 28
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(542, 195)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(123, 22)
+        Me.Label1.TabIndex = 27
+        Me.Label1.Text = "Hora Salida:"
+        '
+        'CboTipoCombustible
+        '
+        Me.CboTipoCombustible.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.CboTipoCombustible.FormattingEnabled = True
+        Me.CboTipoCombustible.Location = New System.Drawing.Point(779, 76)
+        Me.CboTipoCombustible.Name = "CboTipoCombustible"
+        Me.CboTipoCombustible.Size = New System.Drawing.Size(197, 30)
+        Me.CboTipoCombustible.TabIndex = 25
+        '
+        'DtpHoraEntrada
+        '
+        Me.DtpHoraEntrada.CalendarMonthBackground = System.Drawing.SystemColors.Control
+        Me.DtpHoraEntrada.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.DtpHoraEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DtpHoraEntrada.Location = New System.Drawing.Point(319, 133)
+        Me.DtpHoraEntrada.Name = "DtpHoraEntrada"
+        Me.DtpHoraEntrada.Size = New System.Drawing.Size(197, 29)
+        Me.DtpHoraEntrada.TabIndex = 24
         '
         'CboNombreConductor
         '
@@ -399,72 +465,6 @@ Partial Class FrmIngresoCombustible
         Me.ChHoraSalida.Text = "HoraSalida"
         Me.ChHoraSalida.Width = 120
         '
-        'DtpHoraEntrada
-        '
-        Me.DtpHoraEntrada.CalendarMonthBackground = System.Drawing.SystemColors.Control
-        Me.DtpHoraEntrada.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.DtpHoraEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DtpHoraEntrada.Location = New System.Drawing.Point(319, 133)
-        Me.DtpHoraEntrada.Name = "DtpHoraEntrada"
-        Me.DtpHoraEntrada.Size = New System.Drawing.Size(197, 29)
-        Me.DtpHoraEntrada.TabIndex = 24
-        '
-        'CboTipoCombustible
-        '
-        Me.CboTipoCombustible.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.CboTipoCombustible.FormattingEnabled = True
-        Me.CboTipoCombustible.Location = New System.Drawing.Point(779, 76)
-        Me.CboTipoCombustible.Name = "CboTipoCombustible"
-        Me.CboTipoCombustible.Size = New System.Drawing.Size(197, 30)
-        Me.CboTipoCombustible.TabIndex = 25
-        '
-        'Label1
-        '
-        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(542, 195)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(123, 22)
-        Me.Label1.TabIndex = 27
-        Me.Label1.Text = "Hora Salida:"
-        '
-        'DtpHoraSalida
-        '
-        Me.DtpHoraSalida.CalendarMonthBackground = System.Drawing.SystemColors.Control
-        Me.DtpHoraSalida.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.DtpHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DtpHoraSalida.Location = New System.Drawing.Point(779, 193)
-        Me.DtpHoraSalida.Name = "DtpHoraSalida"
-        Me.DtpHoraSalida.Size = New System.Drawing.Size(197, 29)
-        Me.DtpHoraSalida.TabIndex = 28
-        '
-        'TxtCodigoIngresoCombustible
-        '
-        Me.TxtCodigoIngresoCombustible.Location = New System.Drawing.Point(319, 20)
-        Me.TxtCodigoIngresoCombustible.Multiline = True
-        Me.TxtCodigoIngresoCombustible.Name = "TxtCodigoIngresoCombustible"
-        Me.TxtCodigoIngresoCombustible.Size = New System.Drawing.Size(197, 30)
-        Me.TxtCodigoIngresoCombustible.TabIndex = 29
-        '
-        'TxtTotalGalCombustible
-        '
-        Me.TxtTotalGalCombustible.Location = New System.Drawing.Point(779, 132)
-        Me.TxtTotalGalCombustible.Multiline = True
-        Me.TxtTotalGalCombustible.Name = "TxtTotalGalCombustible"
-        Me.TxtTotalGalCombustible.Size = New System.Drawing.Size(197, 30)
-        Me.TxtTotalGalCombustible.TabIndex = 31
-        '
-        'CboNumeroPlaca
-        '
-        Me.CboNumeroPlaca.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.CboNumeroPlaca.FormattingEnabled = True
-        Me.CboNumeroPlaca.Location = New System.Drawing.Point(779, 24)
-        Me.CboNumeroPlaca.Name = "CboNumeroPlaca"
-        Me.CboNumeroPlaca.Size = New System.Drawing.Size(197, 30)
-        Me.CboNumeroPlaca.TabIndex = 32
-        '
         'FrmIngresoCombustible
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -491,6 +491,13 @@ Partial Class FrmIngresoCombustible
     Friend WithEvents Panel1 As Panel
     Friend WithEvents BtnCerrar As Button
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents CboNumeroPlaca As ComboBox
+    Friend WithEvents TxtTotalGalCombustible As TextBox
+    Friend WithEvents TxtCodigoIngresoCombustible As TextBox
+    Friend WithEvents DtpHoraSalida As DateTimePicker
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CboTipoCombustible As ComboBox
+    Friend WithEvents DtpHoraEntrada As DateTimePicker
     Friend WithEvents CboNombreConductor As ComboBox
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
@@ -516,11 +523,4 @@ Partial Class FrmIngresoCombustible
     Friend WithEvents ChTipoCombustible As ColumnHeader
     Friend WithEvents ChTotalGalCombustible As ColumnHeader
     Friend WithEvents ChHoraSalida As ColumnHeader
-    Friend WithEvents TxtTotalGalCombustible As TextBox
-    Friend WithEvents TxtCodigoIngresoCombustible As TextBox
-    Friend WithEvents DtpHoraSalida As DateTimePicker
-    Friend WithEvents Label1 As Label
-    Friend WithEvents CboTipoCombustible As ComboBox
-    Friend WithEvents DtpHoraEntrada As DateTimePicker
-    Friend WithEvents CboNumeroPlaca As ComboBox
 End Class
