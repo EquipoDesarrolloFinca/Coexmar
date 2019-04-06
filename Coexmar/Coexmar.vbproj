@@ -73,53 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\Conexion.vb" />
-    <Compile Include="Forms\FrmAlimento.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmAlimento.Designer.vb">
-      <DependentUpon>FrmAlimento.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\FrmBinesHielo.Designer.vb">
       <DependentUpon>FrmBinesHielo.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmBinesHielo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmConductor.Designer.vb">
-      <DependentUpon>FrmConductor.vb</DependentUpon>
+    <Compile Include="FrmAlimento.Designer.vb">
+      <DependentUpon>FrmAlimento.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmConductor.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InterfazCargo.Designer.vb">
-      <DependentUpon>InterfazCargo.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InterfazCargo.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InterfazPersonal.Designer.vb">
-      <DependentUpon>InterfazPersonal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InterfazPersonal.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InterfazProveedor.Designer.vb">
-      <DependentUpon>InterfazProveedor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InterfazProveedor.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InterfazSector.Designer.vb">
-      <DependentUpon>InterfazSector.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\InterfazSector.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmCamion.Designer.vb">
-      <DependentUpon>FrmCamion.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FrmCamion.vb">
+    <Compile Include="FrmAlimento.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -139,29 +102,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\FrmAlimento.resx">
-      <DependentUpon>FrmAlimento.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmBinesHielo.resx">
       <DependentUpon>FrmBinesHielo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmConductor.resx">
-      <DependentUpon>FrmConductor.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazCargo.resx">
-      <DependentUpon>InterfazCargo.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazPersonal.resx">
-      <DependentUpon>InterfazPersonal.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazProveedor.resx">
-      <DependentUpon>InterfazProveedor.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InterfazSector.resx">
-      <DependentUpon>InterfazSector.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmCamion.resx">
-      <DependentUpon>FrmCamion.vb</DependentUpon>
+    <EmbeddedResource Include="FrmAlimento.resx">
+      <DependentUpon>FrmAlimento.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
