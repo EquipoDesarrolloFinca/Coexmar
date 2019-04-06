@@ -85,10 +85,10 @@
     <Compile Include="Forms\FrmAlimento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmComion.Designer.vb">
-      <DependentUpon>FrmComion.vb</DependentUpon>
+    <Compile Include="Forms\FrmIngresoCombustible.Designer.vb">
+      <DependentUpon>FrmIngresoCombustible.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmComion.vb">
+    <Compile Include="Forms\FrmIngresoCombustible.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -114,8 +114,8 @@
     <EmbeddedResource Include="Forms\FrmAlimento.resx">
       <DependentUpon>FrmAlimento.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmComion.resx">
-      <DependentUpon>FrmComion.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmIngresoCombustible.resx">
+      <DependentUpon>FrmIngresoCombustible.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
